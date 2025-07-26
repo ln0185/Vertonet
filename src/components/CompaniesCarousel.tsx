@@ -2,42 +2,68 @@
 
 import Image from "next/image";
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const LOGOS = [
-  { height: 87, width: 184 }, // 5.4375rem, 11.5rem
-  { height: 65, width: 205 }, // 4.0625rem, 12.8125rem
-  { height: 51, width: 145 }, // 3.1875rem, 9.0625rem
-  { height: 80, width: 151 }, // 5rem, 9.4375rem
-  { height: 58, width: 189 }, // 3.625rem, 11.8125rem
-  { height: 67, width: 128 }, // 4.1875rem, 8rem
-  { height: 66, width: 195 }, // 4.125rem, 12.1875rem
-  { height: 70, width: 245 }, // 4.375rem, 15.3125rem
-  { height: 70, width: 245 }, // 4.375rem, 15.3125rem
+// Individual logo dimensions from Figma design
+const LOGO_DIMENSIONS = [
+  { width: 184, height: 87 }, // logo1
+  { width: 205.06, height: 65 }, // logo2
+  { width: 145.35, height: 51 }, // logo3
+  { width: 151.2, height: 80 }, // logo4
+  { width: 141, height: 60 }, // logo5
+  { width: 127.747, height: 67 }, // logo6
+  { width: 188, height: 30 }, // logo7
+  { width: 245, height: 70 }, // logo8
 ];
 
 const Section = styled.section`
-  background-color: ${({ theme }) => theme.colors.white};
-  padding: ${({ theme }) => `${theme.space.md} 0`};
+  background-color: ${({ theme }) => theme.colors.background.baby};
+  margin: 1rem 0;
+  padding: 1.5rem 0;
   width: 100%;
-  margin: ${({ theme }) => `${theme.space.xl} 0`};
   overflow: hidden;
 `;
 
-const Carousel = styled.div`
-  max-width: max-content;
-  margin: 0 auto;
+const CarouselContainer = styled.div`
+  width: 100%;
+  padding: 0;
+  margin: 0;
+`;
+
+const LogoWrapper = styled.div`
   display: flex;
-  gap: 1.3125rem;
   align-items: center;
-  width: fit-content;
+  justify-content: center;
+  height: 87px;
+  flex-shrink: 0;
+  margin-right: 1.3125rem;
+
+  &:nth-child(5) {
+    align-items: flex-end;
+    padding-bottom: 0.5rem;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+`;
+
+const Logo = styled(Image)`
+  object-fit: contain;
+  max-height: 100%;
+`;
+
+const Track = styled.div<{ $width: number }>`
+  display: flex;
+  align-items: center;
+  width: ${(props) => props.$width}px;
 
   @keyframes scroll {
-    from {
+    0% {
       transform: translateX(0);
     }
-    to {
-      transform: translateX(-50%);
+    100% {
+      transform: translateX(-33.333%);
     }
   }
 
@@ -48,37 +74,45 @@ const Carousel = styled.div`
   }
 `;
 
-const Logo = styled(Image)`
-  /* Image styles are handled by Next.js Image component */
+const LogoSet = styled.div`
+  display: flex;
 `;
 
 export default function CompaniesCarousel() {
+  const [trackWidth, setTrackWidth] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (trackRef.current) {
+      const singleSetWidth = trackRef.current.scrollWidth / 3;
+      setTrackWidth(singleSetWidth * 3);
+    }
+  }, []);
+
+  const renderLogos = () =>
+    LOGO_DIMENSIONS.map((dimensions, index) => (
+      <LogoWrapper key={`logo-${index}`}>
+        <Logo
+          src={`/resources/logos/logo${index + 1}.svg`}
+          alt="Company logo"
+          width={dimensions.width}
+          height={dimensions.height}
+          loading="eager"
+          priority={index < 3}
+          draggable={false}
+        />
+      </LogoWrapper>
+    ));
+
   return (
     <Section>
-      <Carousel>
-        {/* First set of logos */}
-        {[...Array(9)].map((_, index) => (
-          <Logo
-            key={`logo-${index}`}
-            src={`/resources/logos/logo${index + 1}.png`}
-            alt="Company logo"
-            width={LOGOS[index].width}
-            height={LOGOS[index].height}
-            loading="eager"
-          />
-        ))}
-        {/* Second set for seamless loop */}
-        {[...Array(9)].map((_, index) => (
-          <Logo
-            key={`logo-dup-${index}`}
-            src={`/resources/logos/logo${index + 1}.png`}
-            alt="Company logo"
-            width={LOGOS[index].width}
-            height={LOGOS[index].height}
-            loading="eager"
-          />
-        ))}
-      </Carousel>
+      <CarouselContainer>
+        <Track ref={trackRef} $width={trackWidth}>
+          <LogoSet>{renderLogos()}</LogoSet>
+          <LogoSet>{renderLogos()}</LogoSet>
+          <LogoSet>{renderLogos()}</LogoSet>
+        </Track>
+      </CarouselContainer>
     </Section>
   );
 }
