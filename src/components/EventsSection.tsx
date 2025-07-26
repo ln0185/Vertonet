@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import Button from "./Button";
+import Link from "next/link";
 
 const Section = styled.section`
   max-width: 90rem;
@@ -58,6 +59,10 @@ const Image = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.sm};
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 export default function EventsSection() {
   return (
     <Section>
@@ -70,7 +75,9 @@ export default function EventsSection() {
               Við bjóðum upp á fjölbreytta viðburði fyrir alla aldurshópa
             </Description>
           </Info>
-          <Button>Skoða viðburði</Button>
+          <StyledLink href="/vidburdir">
+            <Button>Skoða viðburði</Button>
+          </StyledLink>
         </TextContainer>
         <Image />
       </Content>

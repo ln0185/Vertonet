@@ -1,6 +1,6 @@
 export const theme = {
   colors: {
-    primary: "#122a43",
+    primary: "#EE2982",
     white: "#ffffff",
     gray: {
       100: "#fef9fa",
@@ -12,6 +12,19 @@ export const theme = {
     grayscale: {
       600: "#3c3c3c",
       700: "#1e1e1e",
+    },
+    text: {
+      secondary: "#515151",
+      dark: "#000c17",
+      muted: "#666666",
+    },
+    background: {
+      cta: "#f7f0f3",
+      board: "#f3f1ea",
+    },
+    shadow: {
+      card: "rgba(12, 12, 13, 0.05)",
+      image: "rgba(0, 0, 0, 0.25)",
     },
   },
   space: {

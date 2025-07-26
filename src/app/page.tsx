@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import AboutSection from "@/components/AboutSection";
 import EventsSection from "@/components/EventsSection";
 import CompaniesCarousel from "@/components/CompaniesCarousel";
@@ -10,7 +9,6 @@ import RegisterForm from "@/components/RegisterForm";
 export default function HomePage() {
   return (
     <div className="home-page">
-      <Navbar />
       <main>
         <AboutSection />
         <EventsSection />

@@ -52,30 +52,30 @@ main {
   font-weight: 400;
   line-height: 1.3;
   cursor: pointer;
-  border: 0.0625rem solid #122a43;
+  border: 0.0625rem solid #ee2982;
   transition: all 0.2s ease;
 }
 
 .button--primary {
   background-color: #ffffff;
-  color: #122a43;
+  color: #ee2982;
 }
 
 .button--primary:hover {
-  background-color: #122a43;
+  background-color: #ee2982;
   color: #ffffff;
 }
 
 .button--outline {
   background-color: transparent;
-  border: 1px solid #122a43;
-  color: #122a43;
+  border: 1px solid #ee2982;
+  color: #ee2982;
 }
 
 .button--outline:hover {
-  background-color: #122a43;
+  background-color: #ee2982;
   color: #ffffff;
-  border-color: #122a43;
+  border-color: #ee2982;
 }
 
 .button--light {

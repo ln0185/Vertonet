@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import Button from "./Button";
+import Link from "next/link";
 
 const Section = styled.section`
   padding: ${({ theme }) => `${theme.space.xl} ${theme.space.xl}`};
@@ -46,8 +47,9 @@ const Description = styled.p`
   color: ${({ theme }) => theme.colors.gray[600]};
 `;
 
-const StyledButton = styled(Button)`
+const StyledLink = styled(Link)`
   align-self: flex-start;
+  text-decoration: none;
 `;
 
 export default function AboutSection() {
@@ -65,7 +67,9 @@ export default function AboutSection() {
             aðgengilegri fyrir alla. Við vinnum að því að auka fjölbreytileika í
             upplýsingatækni með því að halda viðburði, námskeið og vinnustofur.
           </Description>
-          <StyledButton>Lesa meira</StyledButton>
+          <StyledLink href="/um-okkur">
+            <Button>Lesa meira</Button>
+          </StyledLink>
         </TextContainer>
       </Content>
     </Section>

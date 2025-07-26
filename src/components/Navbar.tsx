@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 const Nav = styled.nav`
   position: fixed;
@@ -35,7 +36,7 @@ const Content = styled.div`
 `;
 
 const LogoContainer = styled.div`
-  height: 4.375rem;
+  height: 2.2rem;
   display: flex;
   align-items: center;
   margin-top: -0.875rem;
@@ -62,7 +63,7 @@ const Menu = styled.div`
   align-items: center;
 `;
 
-const Link = styled.a`
+const NavLink = styled(Link)`
   font-family: ${({ theme }) => theme.fonts.matter};
   font-size: ${({ theme }) => theme.fontSizes.md};
   color: ${({ theme }) => theme.colors.gray[700]};
@@ -121,6 +122,12 @@ const IconContainer = styled.div<{ $isHover?: boolean }>`
   }
 `;
 
+const LogoLink = styled(Link)`
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
 export default function Navbar() {
   const [mounted, setMounted] = React.useState(false);
 
@@ -129,7 +136,7 @@ export default function Navbar() {
   }, []);
 
   if (!mounted) {
-    return null; // Prevents flash of unstyled content
+    return null;
   }
 
   return (
@@ -137,22 +144,25 @@ export default function Navbar() {
       <Wrapper>
         <Content>
           <LogoContainer>
-            <StyledLogo
-              src="/resources/logos/vertonet-logo.png"
-              alt="Vertonet"
-              fill
-              style={{ objectFit: "contain" }}
-              priority
-              loading="eager"
-            />
+            <LogoLink href="/">
+              <StyledLogo
+                src="/resources/logos/vertonet-logo.svg"
+                alt="Vertonet"
+                fill
+                style={{ objectFit: "contain" }}
+                priority
+                loading="eager"
+              />
+            </LogoLink>
           </LogoContainer>
           <RightSection>
             <Menu>
-              <Link href="#events">Viðburðir</Link>
-              <Link href="#about">Um okkur</Link>
-              <Link href="#projects">Átaksverkefni</Link>
-              <Link href="#news">Fréttir</Link>
-              <Link href="#podcast">Hlaðvarp</Link>
+              <NavLink href="/">Heim</NavLink>
+              <NavLink href="/vidburdir">Viðburðir</NavLink>
+              <NavLink href="/um-okkur">Um okkur</NavLink>
+              <NavLink href="#projects">Átaksverkefni</NavLink>
+              <NavLink href="#news">Fréttir</NavLink>
+              <NavLink href="#podcast">Hlaðvarp</NavLink>
             </Menu>
             <ContactButton>
               <span>Hafa samband</span>

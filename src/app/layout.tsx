@@ -1,6 +1,7 @@
 import "./globals.css";
 import StyledComponentsRegistry from "../lib/registry";
 import Providers from "@/components/Providers";
+import Navbar from "@/components/Navbar";
 
 export default function RootLayout({
   children,
@@ -11,7 +12,10 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning>
         <StyledComponentsRegistry>
-          <Providers>{children}</Providers>
+          <Providers>
+            <Navbar />
+            {children}
+          </Providers>
         </StyledComponentsRegistry>
       </body>
     </html>
