@@ -38,7 +38,7 @@ const Heading = styled.h2`
   font-family: ${({ theme }) => theme.fonts.tobias};
   font-size: ${({ theme }) => theme.fontSizes["5xl"]};
   font-style: normal;
-  font-weight: 200;
+  font-weight: 350;
   line-height: 4.5rem;
   text-align: left;
   width: 43.125rem;
@@ -76,8 +76,7 @@ export default function CTASection() {
             upplýsingatækni.
           </Description>
           <ButtonContainer>
-            <Button>Hafa samband</Button>
-            <Button>Lesa meira</Button>
+            <Button showArrow={false}>Hafa samband</Button>
           </ButtonContainer>
         </TextContainer>
       </Content>

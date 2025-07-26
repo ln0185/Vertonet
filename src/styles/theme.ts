@@ -21,6 +21,7 @@ export const theme = {
     background: {
       cta: "#f7f0f3",
       board: "#f3f1ea",
+      baby: "#F8F5F6",
     },
     shadow: {
       card: "rgba(12, 12, 13, 0.05)",
@@ -28,11 +29,14 @@ export const theme = {
     },
   },
   space: {
-    xs: "0.5rem", // 8px
+    xs: "0.75rem", // 12px
     sm: "1rem", // 16px
     md: "1.5rem", // 24px
     lg: "2rem", // 32px
     xl: "2.5rem", // 40px
+    "2xl": "3rem", // 48px
+    "3xl": "4rem", // 64px
+    "4xl": "5rem", // 80px
   },
   borderRadius: {
     sm: "0.5rem", // 8px
@@ -41,6 +45,7 @@ export const theme = {
   fonts: {
     matter: '"Matter", sans-serif',
     tobias: '"TobiasTRIAL", serif',
+    tobiasNav: '"TobiasTRIAL-Nav", serif',
   },
   fontSizes: {
     xs: "0.875rem", // 14px

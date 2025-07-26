@@ -1,4 +1,3 @@
-import "./globals.css";
 import StyledComponentsRegistry from "../lib/registry";
 import Providers from "@/components/Providers";
 import Navbar from "@/components/Navbar";

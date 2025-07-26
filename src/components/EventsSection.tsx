@@ -5,9 +5,9 @@ import Button from "./Button";
 import Link from "next/link";
 
 const Section = styled.section`
-  max-width: 90rem;
+  width: 100%;
   margin: 0 auto;
-  padding: ${({ theme }) => theme.space.xl};
+  padding: ${({ theme }) => theme.space["4xl"]};
 `;
 
 const Content = styled.div`
@@ -18,16 +18,12 @@ const Content = styled.div`
 `;
 
 const TextContainer = styled.div`
-  width: 32.9375rem;
-  height: 33.3125rem;
+  width: 100%;
+  max-width: 32rem;
+  height: 33rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-`;
-
-const Label = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.gray[600]};
+  justify-content: flex-end;
 `;
 
 const Info = styled.div`
@@ -38,7 +34,7 @@ const Info = styled.div`
 
 const Heading = styled.h2`
   font-family: ${({ theme }) => theme.fonts.tobias};
-  font-weight: 300;
+  font-weight: 350;
   font-size: ${({ theme }) => theme.fontSizes["4xl"]};
   line-height: ${({ theme }) => theme.lineHeights.normal};
   color: ${({ theme }) => theme.colors.gray[700]};
@@ -47,7 +43,7 @@ const Heading = styled.h2`
 const Description = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.lg};
   line-height: ${({ theme }) => theme.lineHeights.loose};
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.gray[600]};
 `;
 
 const Image = styled.div`
@@ -68,16 +64,17 @@ export default function EventsSection() {
     <Section>
       <Content>
         <TextContainer>
-          <Label>Viðburðir</Label>
           <Info>
-            <Heading>Vertonet stendur fyrir ýmsum viðburðum</Heading>
+            <Heading>Viðburðir Vertonet</Heading>
             <Description>
-              Við bjóðum upp á fjölbreytta viðburði fyrir alla aldurshópa
+              Vertonet heldur margvíslega viðburði í samstarfi við helstu
+              upplýsingatæknifyrirtæki á Íslandi og stendur fyrir verkefnum sem
+              stuðla að því að auka fjölbreytileika í upplýsingatækni.
             </Description>
+            <StyledLink href="/vidburdir">
+              <Button>Skoða viðburði</Button>
+            </StyledLink>
           </Info>
-          <StyledLink href="/vidburdir">
-            <Button>Skoða viðburði</Button>
-          </StyledLink>
         </TextContainer>
         <Image />
       </Content>

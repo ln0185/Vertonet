@@ -12,14 +12,7 @@ const Nav = styled.nav`
   right: 0;
   z-index: 100;
   width: 100%;
-`;
-
-const Wrapper = styled.div`
-  padding: ${({ theme }) => theme.space.xl};
-  height: 4.5rem;
-  display: flex;
-  align-items: center;
-  width: 100%;
+  margin-top: 1.5rem;
 `;
 
 const Content = styled.div`
@@ -53,19 +46,20 @@ const StyledLogo = styled(Image)`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.space.xl};
+  gap: ${({ theme }) => theme.space["2xl"]};
 `;
 
 const Menu = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.space.xl};
+  gap: ${({ theme }) => theme.space["2xl"]};
   height: 100%;
   align-items: center;
 `;
 
 const NavLink = styled(Link)`
-  font-family: ${({ theme }) => theme.fonts.matter};
+  font-family: ${({ theme }) => theme.fonts.tobiasNav};
   font-size: ${({ theme }) => theme.fontSizes.md};
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.gray[700]};
   text-decoration: none;
   transition: color 0.2s ease;
@@ -83,43 +77,36 @@ const ContactButton = styled.button`
   padding: ${({ theme }) => `${theme.space.xs} ${theme.space.sm}`};
   justify-content: center;
   align-items: center;
-  gap: ${({ theme }) => theme.space.xs};
   border-radius: ${({ theme }) => theme.borderRadius.lg};
-  font-family: ${({ theme }) => theme.fonts.matter};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: 400;
-  line-height: ${({ theme }) => theme.lineHeights.relaxed};
+  font-family: ${({ theme }) => theme.fonts.tobiasNav};
+  font-size: ${({ theme }) => theme.fontSizes.md};
+  font-weight: 500;
+  line-height: 2rem;
   cursor: pointer;
   border: 0.0625rem solid ${({ theme }) => theme.colors.primary};
-  transition: all 0.2s ease;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  min-width: 8rem;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.primary};
+    padding-right: 2.5rem;
+
+    .arrow-icon {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 `;
 
-const ButtonIconContainer = styled.div`
-  width: 1rem;
-  height: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-`;
-
-const IconContainer = styled.div<{ $isHover?: boolean }>`
-  width: 100%;
-  height: 100%;
+const ArrowIcon = styled(Image)`
   position: absolute;
-  transition: opacity 0.2s ease;
-  opacity: ${({ $isHover }) => ($isHover ? 0 : 1)};
-
-  ${ContactButton}:hover & {
-    opacity: ${({ $isHover }) => ($isHover ? 1 : 0)};
-  }
+  right: 0.75rem;
+  opacity: 0;
+  transform: translateX(-0.5rem);
+  transition: all 0.3s ease;
 `;
 
 const LogoLink = styled(Link)`
@@ -141,57 +128,40 @@ export default function Navbar() {
 
   return (
     <Nav>
-      <Wrapper>
-        <Content>
-          <LogoContainer>
-            <LogoLink href="/">
-              <StyledLogo
-                src="/resources/logos/vertonet-logo.svg"
-                alt="Vertonet"
-                fill
-                style={{ objectFit: "contain" }}
-                priority
-                loading="eager"
-              />
-            </LogoLink>
-          </LogoContainer>
-          <RightSection>
-            <Menu>
-              <NavLink href="/">Heim</NavLink>
-              <NavLink href="/vidburdir">Viðburðir</NavLink>
-              <NavLink href="/um-okkur">Um okkur</NavLink>
-              <NavLink href="#projects">Átaksverkefni</NavLink>
-              <NavLink href="#news">Fréttir</NavLink>
-              <NavLink href="#podcast">Hlaðvarp</NavLink>
-            </Menu>
-            <ContactButton>
-              <span>Hafa samband</span>
-              <ButtonIconContainer>
-                <IconContainer $isHover={false}>
-                  <Image
-                    src="/resources/icons/arrow-up-right-white.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                    style={{ width: "100%", height: "100%" }}
-                    loading="eager"
-                  />
-                </IconContainer>
-                <IconContainer $isHover={true}>
-                  <Image
-                    src="/resources/icons/arrow-up-right-dark.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                    style={{ width: "100%", height: "100%" }}
-                    loading="eager"
-                  />
-                </IconContainer>
-              </ButtonIconContainer>
-            </ContactButton>
-          </RightSection>
-        </Content>
-      </Wrapper>
+      <Content>
+        <LogoContainer>
+          <LogoLink href="/">
+            <StyledLogo
+              src="/resources/logos/vertonet-logo.svg"
+              alt="Vertonet"
+              fill
+              style={{ objectFit: "contain" }}
+              priority
+              loading="eager"
+            />
+          </LogoLink>
+        </LogoContainer>
+        <RightSection>
+          <Menu>
+            <NavLink href="/">Heim</NavLink>
+            <NavLink href="/vidburdir">Viðburðir</NavLink>
+            <NavLink href="/um-okkur">Um okkur</NavLink>
+            <NavLink href="#projects">Átaksverkefni</NavLink>
+            <NavLink href="#news">Fréttir</NavLink>
+            <NavLink href="#podcast">Hlaðvarp</NavLink>
+          </Menu>
+          <ContactButton>
+            Hafa samband
+            <ArrowIcon
+              src="/resources/icons/arrow-up-right-white.svg"
+              alt="Arrow"
+              width={20}
+              height={20}
+              className="arrow-icon"
+            />
+          </ContactButton>
+        </RightSection>
+      </Content>
     </Nav>
   );
 }

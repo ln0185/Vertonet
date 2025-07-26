@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "./Button";
 
 const Section = styled.section`
-  max-width: 90rem;
+  width: 100%;
   height: 57.125rem;
   margin: 0 auto;
   padding: ${({ theme }) => `${theme.space.sm} ${theme.space.md}`};
@@ -61,7 +61,7 @@ const TextContainer = styled.div`
 
 const Heading = styled.h2`
   font-family: ${({ theme }) => theme.fonts.tobias};
-  font-weight: 300;
+  font-weight: 350;
   font-size: ${({ theme }) => theme.fontSizes["3xl"]};
   line-height: ${({ theme }) => theme.lineHeights.normal};
   color: ${({ theme }) => theme.colors.gray[700]};

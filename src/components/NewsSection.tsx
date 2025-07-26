@@ -35,13 +35,13 @@ const NEWS_CARDS = [
 ];
 
 const Section = styled.section`
-  background-color: ${({ theme }) => theme.colors.gray[100]};
+  background-color: ${({ theme }) => theme.colors.background.baby};
   padding: 8rem ${({ theme }) => theme.space.xl};
   width: 100%;
 `;
 
 const Content = styled.div`
-  max-width: 90rem;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -49,10 +49,11 @@ const Content = styled.div`
 `;
 
 const Title = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.matter};
+  font-family: ${({ theme }) => theme.fonts.tobias};
   font-size: ${({ theme }) => theme.fontSizes["4xl"]};
   line-height: ${({ theme }) => theme.lineHeights.normal};
   color: ${({ theme }) => theme.colors.gray[700]};
+  font-weight: 350;
 `;
 
 const Carousel = styled.div`
@@ -85,7 +86,7 @@ const Card = styled.div`
   background: ${({ theme }) => theme.colors.white};
   border: 0.0625rem solid ${({ theme }) => theme.colors.gray[300]};
   border-radius: ${({ theme }) => theme.borderRadius.sm};
-  height: 42.125rem;
+  height: 40rem;
   overflow: hidden;
 `;
 
@@ -96,11 +97,11 @@ const CardImageWrapper = styled.div`
 `;
 
 const CardContent = styled.div`
-  padding: ${({ theme }) => theme.space.lg} ${({ theme }) => theme.space.sm};
-  height: calc(42.125rem - 17.875rem);
+  padding: ${({ theme }) => theme.space.lg} ${({ theme }) => theme.space.lg};
+  height: calc(45rem - 17.875rem);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: ${({ theme }) => theme.space.lg};
 `;
 
 const CardLabel = styled.span`
@@ -112,8 +113,7 @@ const CardLabel = styled.span`
 const CardText = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.space.sm};
-  height: 11.75rem;
+  gap: ${({ theme }) => theme.space.lg};
 `;
 
 const CardHeading = styled.h3`
@@ -121,6 +121,7 @@ const CardHeading = styled.h3`
   font-size: ${({ theme }) => theme.fontSizes["2xl"]};
   line-height: ${({ theme }) => theme.lineHeights.normal};
   color: ${({ theme }) => theme.colors.gray[700]};
+  font-weight: 300;
 `;
 
 const CardDescription = styled.p`

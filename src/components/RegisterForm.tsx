@@ -19,7 +19,7 @@ const TextContainer = styled.div`
 `;
 
 const Heading = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.matter};
+  font-family: ${({ theme }) => theme.fonts.tobias};
   font-size: ${({ theme }) => theme.fontSizes["4xl"]};
   line-height: ${({ theme }) => theme.lineHeights.normal};
   color: ${({ theme }) => theme.colors.gray[700]};
@@ -63,11 +63,6 @@ const Input = styled.input`
   background: ${({ theme }) => theme.colors.white};
 `;
 
-const TextArea = styled(Input).attrs({ as: "textarea" })`
-  resize: none;
-  min-height: 7.5rem;
-`;
-
 const StyledButton = styled(Button)`
   width: 100%;
 `;
@@ -93,7 +88,7 @@ export default function RegisterForm() {
               placeholder="Skrifaðu netfangið þitt"
             />
           </FormGroup>
-          <StyledButton>Skrá mig</StyledButton>
+          <StyledButton>Skrá mig núna</StyledButton>
         </Form>
       </Content>
     </Section>
