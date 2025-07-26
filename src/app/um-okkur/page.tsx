@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Container = styled.div`
   width: 100%;
-  max-width: 90rem;
+  max-width: calc(100% - 6rem);
   margin: 6rem auto;
   padding: 0;
 `;
@@ -13,13 +13,14 @@ const Container = styled.div`
 const PhotoGrid = styled.div`
   display: flex;
   gap: 1.25rem;
-  padding: 2.5rem 1.25rem;
+  padding: 2.5rem 1rem;
   width: 100%;
+  justify-content: center;
 `;
 
 const MainPhoto = styled.div`
-  width: 37.8125rem;
-  height: 34.75rem;
+  width: 100%;
+  height: auto;
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -29,11 +30,12 @@ const PhotoGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
-  width: 49.6875rem;
+  width: 100%;
 `;
 
 const SmallPhoto = styled.div<{ height?: string }>`
-  width: 23.5625rem;
+  flex: 1 1 48.5%;
+  min-width: 0;
   height: ${(props) => props.height || "13.5rem"};
   position: relative;
   border-radius: 0.5rem;
@@ -41,7 +43,7 @@ const SmallPhoto = styled.div<{ height?: string }>`
 `;
 
 const WidePhoto = styled.div`
-  width: 48.375rem;
+  width: 100%;
   height: 20.1875rem;
   position: relative;
   border-radius: 0.5rem;
@@ -49,40 +51,45 @@ const WidePhoto = styled.div`
 `;
 
 const ContentSection = styled.section`
-  padding: 2.5rem 5rem;
+  padding: 2.5rem 3rem;
+  width: 100%;
   display: flex;
-  gap: 27.9375rem;
+  justify-content: space-between;
 `;
 
 const Label = styled.div`
   font-family: ${({ theme }) => theme.fonts.matter};
   font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.gray[500]};
+  color: ${({ theme }) => theme.colors.text.dark};
 `;
 
 const TextContent = styled.div`
   font-family: ${({ theme }) => theme.fonts.matter};
   font-size: 1.3125rem;
+  font-weight: normal;
   line-height: 2.0625rem;
   color: ${({ theme }) => theme.colors.gray[600]};
-  width: 45.6875rem;
+  max-width: 45rem;
+  width: 100%;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const BoardSection = styled.section`
-  padding: 2.5rem 5rem;
-`;
-
-const BoardTitle = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.matter};
-  font-size: 1.125rem;
-  color: ${({ theme }) => theme.colors.gray[700]};
-  margin-bottom: 5rem;
+  padding: 2.5rem 3rem;
 `;
 
 const BoardGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  padding: 2.5rem 0;
+  gap: 2.5rem 1.25rem;
   width: 100%;
   justify-content: flex-start;
 `;
@@ -199,11 +206,17 @@ export default function AboutPage() {
             faucibus nullam ac id egestas. Magnis mauris morbi quam nulla duis.
             Pellentesque dignissim.
           </p>
+          <p>
+            Turpis vulputate donec ullamcorper faucibus pellentesque amet. Amet
+            amet velit nunc ultrices. Praesent vitae feugiat vel adipiscing
+            faucibus nullam ac id egestas. Magnis mauris morbi quam nulla duis.
+            Pellentesque dignissim.
+          </p>
         </TextContent>
       </ContentSection>
 
       <BoardSection>
-        <BoardTitle>STJÓRN</BoardTitle>
+        <Label>STJÓRN</Label>
         <BoardGrid>
           {[1, 2, 3, 4, 5, 6].map((index) => (
             <BoardCard key={index}>
@@ -221,8 +234,8 @@ export default function AboutPage() {
                   <Title>Vefstjóri og fjölmiðlafulltrúi</Title>
                 </CardText>
                 <Image
-                  src="/resources/icons/arrow-up-right.svg"
-                  alt="Arrow"
+                  src="/resources/icons/linkedin.svg"
+                  alt="Linkedin"
                   width={30}
                   height={30}
                 />
