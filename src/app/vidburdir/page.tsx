@@ -6,8 +6,9 @@ import CTASection from "@/components/CTASection";
 
 const Container = styled.div`
   width: 100%;
-  max-width: 90rem;
+  max-width: calc(100% - 6rem);
   margin: 9rem auto;
+  padding: 0;
 `;
 
 const PageTitle = styled.h1`
