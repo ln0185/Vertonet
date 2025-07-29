@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const NEWS_CARDS = [
   {
@@ -132,10 +133,26 @@ const CardDescription = styled.p`
 `;
 
 export default function NewsSection() {
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  const getTranslatedLabel = () =>
+    currentLanguage === "en" ? "PROJECTS" : "ÁTAKSVERKEFNI";
+  const getTranslatedTitle = () =>
+    currentLanguage === "en"
+      ? "Building Vertonet's playbook together"
+      : "Smíðum saman playbook vertonet";
+  const getTranslatedDescription = () =>
+    currentLanguage === "en"
+      ? "Lorem ipsum dolor sit amet consectetur. Nunc morbi risus auctor ultricies. Ornare dapibus arcu sit lorem. Turpis est a dignissim sit rhoncus magnis fames ultrices pulvinar."
+      : "Lorem ipsum dolor sit amet consectetur. Nunc morbi risus auctor ultricies. Ornare dapibus arcu sit lorem. Turpis est a dignissim sit rhoncus magnis fames ultrices pulvinar.";
+
   return (
     <Section>
       <Content>
-        <Title>Hvað er að frétta?</Title>
+        <Title>
+          {currentLanguage === "en" ? "What's New?" : "Hvað er að frétta?"}
+        </Title>
         <Carousel>
           <Cards>
             {NEWS_CARDS.map((card, index) => (
@@ -143,17 +160,19 @@ export default function NewsSection() {
                 <CardImageWrapper>
                   <Image
                     src={card.image}
-                    alt={card.title}
+                    alt={getTranslatedTitle()}
                     fill
                     style={{ objectFit: "cover" }}
                     loading="eager"
                   />
                 </CardImageWrapper>
                 <CardContent>
-                  <CardLabel>{card.label}</CardLabel>
+                  <CardLabel>{getTranslatedLabel()}</CardLabel>
                   <CardText>
-                    <CardHeading>{card.title}</CardHeading>
-                    <CardDescription>{card.description}</CardDescription>
+                    <CardHeading>{getTranslatedTitle()}</CardHeading>
+                    <CardDescription>
+                      {getTranslatedDescription()}
+                    </CardDescription>
                   </CardText>
                 </CardContent>
               </Card>
@@ -164,17 +183,19 @@ export default function NewsSection() {
                 <CardImageWrapper>
                   <Image
                     src={card.image}
-                    alt={card.title}
+                    alt={getTranslatedTitle()}
                     fill
                     style={{ objectFit: "cover" }}
                     loading="eager"
                   />
                 </CardImageWrapper>
                 <CardContent>
-                  <CardLabel>{card.label}</CardLabel>
+                  <CardLabel>{getTranslatedLabel()}</CardLabel>
                   <CardText>
-                    <CardHeading>{card.title}</CardHeading>
-                    <CardDescription>{card.description}</CardDescription>
+                    <CardHeading>{getTranslatedTitle()}</CardHeading>
+                    <CardDescription>
+                      {getTranslatedDescription()}
+                    </CardDescription>
                   </CardText>
                 </CardContent>
               </Card>

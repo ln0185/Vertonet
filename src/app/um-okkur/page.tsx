@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
   width: 100%;
@@ -147,13 +148,15 @@ const Title = styled.p`
 `;
 
 export default function AboutPage() {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <PhotoGrid>
         <MainPhoto>
           <Image
             src="/resources/images/umokkur1.png"
-            alt="Vertonet event"
+            alt={t("aboutPage.imageAlts.event")}
             fill
             style={{ objectFit: "cover" }}
           />
@@ -162,7 +165,7 @@ export default function AboutPage() {
           <SmallPhoto>
             <Image
               src="/resources/images/umokkur2.png"
-              alt="Vertonet activity"
+              alt={t("aboutPage.imageAlts.activity")}
               fill
               style={{ objectFit: "cover" }}
             />
@@ -170,7 +173,7 @@ export default function AboutPage() {
           <SmallPhoto>
             <Image
               src="/resources/images/umokkur3.png"
-              alt="Vertonet workshop"
+              alt={t("aboutPage.imageAlts.workshop")}
               fill
               style={{ objectFit: "cover" }}
             />
@@ -178,7 +181,7 @@ export default function AboutPage() {
           <WidePhoto>
             <Image
               src="/resources/images/umokkur4.png"
-              alt="Vertonet team"
+              alt={t("aboutPage.imageAlts.team")}
               fill
               style={{ objectFit: "cover" }}
             />
@@ -187,36 +190,17 @@ export default function AboutPage() {
       </PhotoGrid>
 
       <ContentSection>
-        <Label>UM OKKUR</Label>
+        <Label>{t("aboutPage.label")}</Label>
         <TextContent>
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Enim nec venenatis eu quam
-            orci. Tincidunt id egestas magna ut non a elit curabitur viverra.
-          </p>
-          <p>
-            Turpis vulputate donec ullamcorper faucibus pellentesque amet. Amet
-            amet velit nunc ultrices. Praesent vitae feugiat vel adipiscing
-            faucibus nullam ac id egestas. Magnis mauris morbi quam nulla duis.
-            Pellentesque dignissim vitae integer tellus sed volutpat. Nunc in
-            pellentesque turpis cursus massa.
-          </p>
-          <p>
-            Turpis vulputate donec ullamcorper faucibus pellentesque amet. Amet
-            amet velit nunc ultrices. Praesent vitae feugiat vel adipiscing
-            faucibus nullam ac id egestas. Magnis mauris morbi quam nulla duis.
-            Pellentesque dignissim.
-          </p>
-          <p>
-            Turpis vulputate donec ullamcorper faucibus pellentesque amet. Amet
-            amet velit nunc ultrices. Praesent vitae feugiat vel adipiscing
-            faucibus nullam ac id egestas. Magnis mauris morbi quam nulla duis.
-            Pellentesque dignissim.
-          </p>
+          <p>{t("aboutPage.content.p1")}</p>
+          <p>{t("aboutPage.content.p2")}</p>
+          <p>{t("aboutPage.content.p3")}</p>
+          <p>{t("aboutPage.content.p4")}</p>
         </TextContent>
       </ContentSection>
 
       <BoardSection>
-        <Label>STJÓRN</Label>
+        <Label>{t("aboutPage.boardLabel")}</Label>
         <BoardGrid>
           {[1, 2, 3, 4, 5, 6].map((index) => (
             <BoardCard key={index}>
@@ -231,11 +215,11 @@ export default function AboutPage() {
               <CardContent>
                 <CardText>
                   <Name>Karítas Ólafsdóttir</Name>
-                  <Title>Vefstjóri og fjölmiðlafulltrúi</Title>
+                  <Title>{t("aboutPage.boardMember.title")}</Title>
                 </CardText>
                 <Image
                   src="/resources/icons/linkedin.svg"
-                  alt="Linkedin"
+                  alt={t("aboutPage.boardMember.linkedinAlt")}
                   width={30}
                   height={30}
                 />

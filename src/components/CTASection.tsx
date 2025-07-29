@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import Button from "./Button";
+import { useTranslation } from "react-i18next";
 
 const Section = styled.section`
   display: flex;
@@ -63,20 +64,16 @@ const ButtonContainer = styled.div`
 `;
 
 export default function CTASection() {
+  const { t } = useTranslation();
+
   return (
     <Section>
       <Content>
         <TextContainer>
-          <Heading>
-            Vill þitt fyrirtæki halda viðburð í samstarfi við Vertonet?
-          </Heading>
-          <Description>
-            Við erum alltaf á höttunum eftir nýjum og spennandi tækifærum til að
-            efla tengslanet okkar og skapa vettvang fyrir konur og kvár í
-            upplýsingatækni.
-          </Description>
+          <Heading>{t("cta.title")}</Heading>
+          <Description>{t("cta.description")}</Description>
           <ButtonContainer>
-            <Button showArrow={false}>Hafa samband</Button>
+            <Button showArrow={false}>{t("cta.contact")}</Button>
           </ButtonContainer>
         </TextContainer>
       </Content>

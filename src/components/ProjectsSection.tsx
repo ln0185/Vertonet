@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import Button from "./Button";
+import { useTranslation } from "react-i18next";
 
 const Section = styled.section`
   width: 100%;
@@ -74,25 +75,34 @@ const Description = styled.p`
 `;
 
 export default function ProjectsSection() {
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  const getTranslatedLabel = () =>
+    currentLanguage === "en" ? "PROJECTS" : "ÁTAKSVERKEFNI";
+  const getTranslatedTitle = () =>
+    currentLanguage === "en"
+      ? "Vertonet runs projects that promote diversity in IT"
+      : "Vertonet stendur fyrir verkefnum sem stuðla að því að auka fjölbreytileika í upplýsingatækni";
+  const getTranslatedDescription = () =>
+    currentLanguage === "en"
+      ? "We are always looking for new and exciting opportunities to strengthen our network and create a platform for women and non-binary individuals in IT."
+      : "Við erum alltaf á höttunum eftir nýjum og spennandi tækifærum til að efla tengslanet okkar og skapa vettvang fyrir konur og kvár í upplýsingatækni.";
+  const getTranslatedButton = () =>
+    currentLanguage === "en" ? "View Projects" : "Skoða verkefni";
+
   return (
     <Section>
       <BackgroundImage />
       <CardContainer>
         <Card>
           <Content>
-            <Label>ÁTAKSVERKEFNI</Label>
+            <Label>{getTranslatedLabel()}</Label>
             <TextContainer>
-              <Heading>
-                Vertonet stendur fyrir verkefnum sem stuðla að því að auka
-                fjölbreytileika í upplýsingatækni
-              </Heading>
-              <Description>
-                Við erum alltaf á höttunum eftir nýjum og spennandi tækifærum
-                til að efla tengslanet okkar og skapa vettvang fyrir konur og
-                kvár í upplýsingatækni.
-              </Description>
+              <Heading>{getTranslatedTitle()}</Heading>
+              <Description>{getTranslatedDescription()}</Description>
             </TextContainer>
-            <Button>Skoða verkefni</Button>
+            <Button>{getTranslatedButton()}</Button>
           </Content>
         </Card>
       </CardContainer>

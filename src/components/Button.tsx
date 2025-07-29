@@ -11,9 +11,13 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   showArrow?: boolean;
+  disabled?: boolean;
 }
 
-const StyledButton = styled.button<{ $variant?: ButtonVariant }>`
+const StyledButton = styled.button<{
+  $variant?: ButtonVariant;
+  $disabled?: boolean;
+}>`
   display: flex;
   height: 2.5rem; // 40px
   padding: 0.75rem 1rem; // 12px 16px

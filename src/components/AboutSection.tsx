@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import Button from "./Button";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const Section = styled.section`
   padding: 9.25rem ${({ theme }) => theme.space.xl};
@@ -56,21 +57,19 @@ const StyledLink = styled(Link)`
 `;
 
 export default function AboutSection() {
+  const { t } = useTranslation();
+
   return (
     <Section>
       <Content>
         <TitleContainer>
-          <Title>Hvað er Vertonet ?</Title>
+          <Title>{t("about.title")}</Title>
         </TitleContainer>
         <RightAlignedContent>
           <TextContainer>
-            <Description>
-              Markmið okkar er að skapa vettvang fyrir konur og kvár í
-              margvíslegum störfum innan atvinnugreinarinnar til þess að
-              tengjast, fræðast og styðja hvert annað
-            </Description>
+            <Description>{t("about.description")}</Description>
             <StyledLink href="/um-okkur">
-              <Button variant="text">Lesa um Vertonet</Button>
+              <Button variant="text">{t("about.readMore")}</Button>
             </StyledLink>
           </TextContainer>
         </RightAlignedContent>

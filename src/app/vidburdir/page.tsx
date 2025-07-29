@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import CTASection from "@/components/CTASection";
+import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
   width: 100%;
@@ -91,79 +92,121 @@ const LocationWrapper = styled.div`
 `;
 
 export default function EventsPage() {
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "Fyrirtækjaheimsókn til Gangverk",
-      location: "Ármúli 6, 108 Reykjavík",
-      date: "18. september 2025, 14:00",
-      image: "/resources/images/vidburdir1.png",
-    },
-    {
-      id: 2,
-      title: "Fyrirtækjaheimsókn til Advania",
-      location: "Guðrúnartún 10, 105 Reykjavík",
-      date: "24. október 2025, 17:00",
-      image: "/resources/images/vidburdir2.png",
-    },
-    {
-      id: 3,
-      title: "Fyrirtækjaheimsókn til Kolibri",
-      location: "Borgartún 26, Reykjavík",
-      date: "14. janúar 2026, 17:00",
-      image: "/resources/images/vidburdir3.png",
-    },
-    {
-      id: 4,
-      title: "Fyrirtækjaheimsókn til Aranja",
-      location: "Nóatún 17, 105 Reykjavík",
-      date: "23. februar 2025, 14:00",
-      image: "/resources/images/vidburdir4.png",
-    },
-    {
-      id: 5,
-      title: "Fyrirtækjaheimsókn til Overcast",
-      location: "Höfðabakka 9D, 110 Reykjavík",
-      date: "18. mars 2025, 17:00",
-      image: "/resources/images/vidburdir5.png",
-    },
-  ];
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
-  const pastEvents = [
-    {
-      id: 1,
-      title: "Fyrirtækjaheimsókn til Syndis",
-      location: "Skeifan 19, 108 Reykjavík",
-      date: "15. febrúar 2025, 17:00",
-      image: "/resources/images/vidburdir6.png",
-    },
-    {
-      id: 2,
-      title: "Fyrirtækjaheimsókn til Origo",
-      location: "Borgartún 37, 105 Reykjavík",
-      date: "12. janúar 2025, 14:00",
-      image: "/resources/images/umokkur3.png",
-    },
-    {
-      id: 3,
-      title: "Fyrirtækjaheimsókn til TM Software",
-      location: "Borgartún 37, 105 Reykjavík",
-      date: "23. nóvember 2026, 17:00",
-      image: "/resources/images/umokkur1.png",
-    },
-  ];
+  const upcomingEvents =
+    currentLanguage === "en"
+      ? [
+          {
+            title: "Company Visit to Gangverk",
+            location: "Ármúli 6, 108 Reykjavík",
+            date: "September 18, 2025, 14:00",
+          },
+          {
+            title: "Company Visit to Advania",
+            location: "Guðrúnartún 10, 105 Reykjavík",
+            date: "October 24, 2025, 17:00",
+          },
+          {
+            title: "Company Visit to Kolibri",
+            location: "Borgartún 26, Reykjavík",
+            date: "January 14, 2026, 17:00",
+          },
+          {
+            title: "Company Visit to Aranja",
+            location: "Nóatún 17, 105 Reykjavík",
+            date: "February 23, 2025, 14:00",
+          },
+          {
+            title: "Company Visit to Overcast",
+            location: "Höfðabakka 9D, 110 Reykjavík",
+            date: "March 18, 2025, 17:00",
+          },
+        ]
+      : [
+          {
+            title: "Fyrirtækjaheimsókn til Gangverk",
+            location: "Ármúli 6, 108 Reykjavík",
+            date: "18. september 2025, 14:00",
+          },
+          {
+            title: "Fyrirtækjaheimsókn til Advania",
+            location: "Guðrúnartún 10, 105 Reykjavík",
+            date: "24. október 2025, 17:00",
+          },
+          {
+            title: "Fyrirtækjaheimsókn til Kolibri",
+            location: "Borgartún 26, Reykjavík",
+            date: "14. janúar 2026, 17:00",
+          },
+          {
+            title: "Fyrirtækjaheimsókn til Aranja",
+            location: "Nóatún 17, 105 Reykjavík",
+            date: "23. februar 2025, 14:00",
+          },
+          {
+            title: "Fyrirtækjaheimsókn til Overcast",
+            location: "Höfðabakka 9D, 110 Reykjavík",
+            date: "18. mars 2025, 17:00",
+          },
+        ];
+
+  const pastEvents =
+    currentLanguage === "en"
+      ? [
+          {
+            title: "Company Visit to Syndis",
+            location: "Skeifan 19, 108 Reykjavík",
+            date: "February 15, 2025, 17:00",
+          },
+          {
+            title: "Company Visit to Origo",
+            location: "Borgartún 37, 105 Reykjavík",
+            date: "January 12, 2025, 14:00",
+          },
+          {
+            title: "Company Visit to TM Software",
+            location: "Borgartún 37, 105 Reykjavík",
+            date: "November 23, 2026, 17:00",
+          },
+        ]
+      : [
+          {
+            title: "Fyrirtækjaheimsókn til Syndis",
+            location: "Skeifan 19, 108 Reykjavík",
+            date: "15. febrúar 2025, 17:00",
+          },
+          {
+            title: "Fyrirtækjaheimsókn til Origo",
+            location: "Borgartún 37, 105 Reykjavík",
+            date: "12. janúar 2025, 14:00",
+          },
+          {
+            title: "Fyrirtækjaheimsókn til TM Software",
+            location: "Borgartún 37, 105 Reykjavík",
+            date: "23. nóvember 2026, 17:00",
+          },
+        ];
+
+  const getTranslatedLocation = () =>
+    currentLanguage === "en" ? "Location" : "Staðsetning";
+  const getTranslatedUpcoming = () =>
+    currentLanguage === "en" ? "Upcoming Events" : "Viðburðir á döfinni";
+  const getTranslatedPast = () =>
+    currentLanguage === "en" ? "Past Events" : "Fyrri viðburðir";
 
   return (
     <>
       <Container>
-        <PageTitle>Viðburðir á döfinni</PageTitle>
+        <PageTitle>{getTranslatedUpcoming()}</PageTitle>
 
         <EventGrid>
-          {upcomingEvents.map((event) => (
-            <EventCard key={event.id}>
+          {upcomingEvents.map((event, index) => (
+            <EventCard key={index}>
               <EventImage>
                 <Image
-                  src={event.image}
+                  src={`/resources/images/vidburdir${index + 1}.png`}
                   alt={event.title}
                   fill
                   style={{ objectFit: "cover" }}
@@ -175,7 +218,7 @@ export default function EventsPage() {
                   <LocationWrapper>
                     <Image
                       src="/resources/icons/location.svg"
-                      alt="Location"
+                      alt={getTranslatedLocation()}
                       width={11}
                       height={15}
                     />
@@ -188,14 +231,18 @@ export default function EventsPage() {
           ))}
         </EventGrid>
 
-        <PageTitle>Fyrri viðburðir</PageTitle>
+        <PageTitle>{getTranslatedPast()}</PageTitle>
 
         <EventGrid>
-          {pastEvents.map((event) => (
-            <EventCard key={event.id}>
+          {pastEvents.map((event, index) => (
+            <EventCard key={index}>
               <EventImage>
                 <Image
-                  src={event.image}
+                  src={
+                    index === 0
+                      ? "/resources/images/vidburdir6.png"
+                      : `/resources/images/umokkur${index + 1}.png`
+                  }
                   alt={event.title}
                   fill
                   style={{ objectFit: "cover" }}
@@ -207,7 +254,7 @@ export default function EventsPage() {
                   <LocationWrapper>
                     <Image
                       src="/resources/icons/location.svg"
-                      alt="Location"
+                      alt={getTranslatedLocation()}
                       width={11}
                       height={15}
                     />

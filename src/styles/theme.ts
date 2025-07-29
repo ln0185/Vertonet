@@ -44,8 +44,8 @@ export const theme = {
   },
   fonts: {
     matter: '"Matter", sans-serif',
+    matterNav: '"Matter-Nav", sans-serif',
     tobias: '"TobiasTRIAL", serif',
-    tobiasNav: '"TobiasTRIAL-Nav", serif',
   },
   fontSizes: {
     xs: "0.875rem", // 14px

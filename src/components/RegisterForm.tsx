@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import Button from "./Button";
+import { useTranslation } from "react-i18next";
 
 const Section = styled.section`
   background-color: ${({ theme }) => theme.colors.white};
@@ -68,27 +69,33 @@ const StyledButton = styled(Button)`
 `;
 
 export default function RegisterForm() {
+  const { t } = useTranslation();
+
   return (
     <Section>
       <Content>
         <TextContainer>
-          <Heading>Skráðu þig í samtökin</Heading>
-          <Description>Fáðu boð á næsta viðburð</Description>
+          <Heading>{t("register.title")}</Heading>
+          <Description>{t("register.description")}</Description>
         </TextContainer>
         <Form>
           <FormGroup>
-            <Label htmlFor="name">Nafn</Label>
-            <Input type="text" id="name" placeholder="Skrifaðu nafnið þitt" />
+            <Label htmlFor="name">{t("register.name")}</Label>
+            <Input
+              type="text"
+              id="name"
+              placeholder={t("register.namePlaceholder")}
+            />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="email">Netfang</Label>
+            <Label htmlFor="email">{t("register.email")}</Label>
             <Input
               type="email"
               id="email"
-              placeholder="Skrifaðu netfangið þitt"
+              placeholder={t("register.emailPlaceholder")}
             />
           </FormGroup>
-          <StyledButton>Skrá mig núna</StyledButton>
+          <StyledButton>{t("register.submit")}</StyledButton>
         </Form>
       </Content>
     </Section>

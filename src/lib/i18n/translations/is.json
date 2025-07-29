@@ -1,0 +1,18 @@
+{
+  "navigation": {
+    "home": "Heim",
+    "events": "Viðburðir",
+    "about": "Um okkur",
+    "projects": "Átaksverkefni",
+    "news": "Fréttir",
+    "podcast": "Hlaðvarp",
+    "contact": "Hafa samband"
+  },
+  "chatbot": {
+    "header": "Hvernig get ég aðstoðað?",
+    "placeholder": "Skrifaðu skilaboð...",
+    "send": "Senda",
+    "error": "Því miður kom upp villa. Vinsamlegast reyndu aftur síðar.",
+    "initialMessage": "Hæ! Ég er hér til að hjálpa þér með upplýsingar um konur og kynsegin einstaklinga í tækni, sérstaklega á Íslandi. Ég get líka hjálpað þér að finna þig um vefsíðuna og finna upplýsingar um viðburði og aðild. Hvernig get ég aðstoðað þig í dag?"
+  }
+}

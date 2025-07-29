@@ -1,0 +1,18 @@
+{
+  "navigation": {
+    "home": "Home",
+    "events": "Events",
+    "about": "About Us",
+    "projects": "Projects",
+    "news": "News",
+    "podcast": "Podcast",
+    "contact": "Contact Us"
+  },
+  "chatbot": {
+    "header": "How can I help you?",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "error": "I'm sorry, I encountered an error. Please try again later.",
+    "initialMessage": "Hello! I'm here to help you with information about women and non-binary individuals in tech, especially in Iceland. I can also help you navigate the website and find information about events and membership. How can I assist you today?"
+  }
+}
