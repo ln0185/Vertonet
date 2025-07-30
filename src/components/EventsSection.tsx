@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import Button from "./Button";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const Section = styled.section`
   width: 100%;
@@ -60,19 +61,27 @@ const StyledLink = styled(Link)`
 `;
 
 export default function EventsSection() {
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  const getTranslatedTitle = () =>
+    currentLanguage === "en" ? "Vertonet Events" : "Viðburðir Vertonet";
+  const getTranslatedDescription = () =>
+    currentLanguage === "en"
+      ? "Vertonet hosts various events in collaboration with leading tech companies in Iceland and runs projects that promote diversity in IT."
+      : "Vertonet heldur margvíslega viðburði í samstarfi við helstu upplýsingatæknifyrirtæki á Íslandi og stendur fyrir verkefnum sem stuðla að því að auka fjölbreytileika í upplýsingatækni.";
+  const getTranslatedButton = () =>
+    currentLanguage === "en" ? "View Events" : "Skoða viðburði";
+
   return (
     <Section>
       <Content>
         <TextContainer>
           <Info>
-            <Heading>Viðburðir Vertonet</Heading>
-            <Description>
-              Vertonet heldur margvíslega viðburði í samstarfi við helstu
-              upplýsingatæknifyrirtæki á Íslandi og stendur fyrir verkefnum sem
-              stuðla að því að auka fjölbreytileika í upplýsingatækni.
-            </Description>
+            <Heading>{getTranslatedTitle()}</Heading>
+            <Description>{getTranslatedDescription()}</Description>
             <StyledLink href="/vidburdir">
-              <Button>Skoða viðburði</Button>
+              <Button>{getTranslatedButton()}</Button>
             </StyledLink>
           </Info>
         </TextContainer>

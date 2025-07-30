@@ -19,9 +19,9 @@ export const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
  @font-face {
-    font-family: "TobiasTRIAL-Nav";
-    src: url("/resources/fonts/TobiasTRIAL-Regular.woff") format("woff");
-    font-weight: 500;
+    font-family: "Matter-Nav";
+    src: url("/resources/fonts/Matter-Regular.woff") format("woff");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }

@@ -2,6 +2,8 @@
 
 import styled from "styled-components";
 import Button from "./Button";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const Section = styled.section`
   background-color: ${({ theme }) => theme.colors.white};
@@ -63,32 +65,106 @@ const Input = styled.input`
   background: ${({ theme }) => theme.colors.white};
 `;
 
+const Message = styled.p<{ $isError: boolean }>`
+  font-family: ${({ theme }) => theme.fonts.matter};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  line-height: ${({ theme }) => theme.lineHeights.normal};
+  color: ${({ theme, $isError }) =>
+    $isError ? theme.colors.gray[700] : theme.colors.primary};
+  margin-bottom: ${({ theme }) => theme.space.sm};
+`;
+
 const StyledButton = styled(Button)`
   width: 100%;
 `;
 
 export default function RegisterForm() {
+  const { t } = useTranslation();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage("Registration successful!");
+        setFormData({ name: "", email: "" });
+      } else {
+        setMessage(data.error || "Registration failed");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      setMessage("An error occurred during registration");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <Section>
       <Content>
         <TextContainer>
-          <Heading>Skráðu þig í samtökin</Heading>
-          <Description>Fáðu boð á næsta viðburð</Description>
+          <Heading>{t("register.title")}</Heading>
+          <Description>{t("register.description")}</Description>
         </TextContainer>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label htmlFor="name">Nafn</Label>
-            <Input type="text" id="name" placeholder="Skrifaðu nafnið þitt" />
+            <Label htmlFor="name">{t("register.name")}</Label>
+            <Input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder={t("register.namePlaceholder")}
+              required
+            />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="email">Netfang</Label>
+            <Label htmlFor="email">{t("register.email")}</Label>
             <Input
               type="email"
               id="email"
-              placeholder="Skrifaðu netfangið þitt"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder={t("register.emailPlaceholder")}
+              required
             />
           </FormGroup>
-          <StyledButton>Skrá mig núna</StyledButton>
+          {message && (
+            <Message $isError={message !== "Registration successful!"}>
+              {message}
+            </Message>
+          )}
+          <StyledButton type="submit" disabled={isSubmitting}>
+            {isSubmitting ? t("register.submitting") : t("register.submit")}
+          </StyledButton>
         </Form>
       </Content>
     </Section>

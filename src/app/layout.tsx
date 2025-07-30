@@ -1,6 +1,7 @@
 import StyledComponentsRegistry from "../lib/registry";
 import Providers from "@/components/Providers";
 import Navbar from "@/components/Navbar";
+import ChatBot from "@/components/ChatBot";
 
 export default function RootLayout({
   children,
@@ -14,6 +15,7 @@ export default function RootLayout({
           <Providers>
             <Navbar />
             {children}
+            <ChatBot />
           </Providers>
         </StyledComponentsRegistry>
       </body>

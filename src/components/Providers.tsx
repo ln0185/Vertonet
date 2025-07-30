@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
 import { GlobalStyle } from "../styles/GlobalStyle";
 import React from "react";
+import "../lib/i18n/config"; // Import i18n configuration
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false);
