@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Image from "next/image";
 import CTASection from "@/components/CTASection";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { buildApiUrl } from "@/lib/utils/api";
 
 const Container = styled.div`
   width: 100%;
@@ -38,7 +40,7 @@ const EventImage = styled.div`
   box-shadow: 0 0.25rem 0.25rem ${({ theme }) => theme.colors.shadow.image};
 `;
 
-const EventCard = styled.div`
+const EventCard = styled.div<{ $clickable?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -47,13 +49,17 @@ const EventCard = styled.div`
   width: 100%;
   height: fit-content;
 
-  &:hover {
-    cursor: pointer;
+  ${({ $clickable }) =>
+    $clickable &&
+    `
+    &:hover {
+      cursor: pointer;
 
-    ${EventImage} {
-      transform: scale(1.02);
+      ${EventImage} {
+        transform: scale(1.02);
+      }
     }
-  }
+  `}
 `;
 
 const EventContent = styled.div`
@@ -91,66 +97,68 @@ const LocationWrapper = styled.div`
   white-space: nowrap;
 `;
 
+const LoadingText = styled.div`
+  font-family: ${({ theme }) => theme.fonts.matter};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text.secondary};
+  text-align: center;
+  padding: 2rem 0;
+`;
+
+const ErrorText = styled.div`
+  font-family: ${({ theme }) => theme.fonts.matter};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.error || "#ef4444"};
+  text-align: center;
+  padding: 2rem 0;
+`;
+
+interface ApiEvent {
+  id: string;
+  title: string;
+  location: string;
+  date: string;
+  image: string | null;
+  url: string | null;
+  description: string | null;
+}
+
 export default function EventsPage() {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
+  const [upcomingEvents, setUpcomingEvents] = useState<ApiEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const upcomingEvents =
-    currentLanguage === "en"
-      ? [
-          {
-            title: "Company Visit to Gangverk",
-            location: "Ármúli 6, 108 Reykjavík",
-            date: "September 18, 2025, 14:00",
-          },
-          {
-            title: "Company Visit to Advania",
-            location: "Guðrúnartún 10, 105 Reykjavík",
-            date: "October 24, 2025, 17:00",
-          },
-          {
-            title: "Company Visit to Kolibri",
-            location: "Borgartún 26, Reykjavík",
-            date: "January 14, 2026, 17:00",
-          },
-          {
-            title: "Company Visit to Aranja",
-            location: "Nóatún 17, 105 Reykjavík",
-            date: "February 23, 2026, 14:00",
-          },
-          {
-            title: "Company Visit to Overcast",
-            location: "Höfðabakka 9D, 110 Reykjavík",
-            date: "March 18, 2026, 17:00",
-          },
-        ]
-      : [
-          {
-            title: "Fyrirtækjaheimsókn til Gangverk",
-            location: "Ármúli 6, 108 Reykjavík",
-            date: "18. september 2025, 14:00",
-          },
-          {
-            title: "Fyrirtækjaheimsókn til Advania",
-            location: "Guðrúnartún 10, 105 Reykjavík",
-            date: "24. október 2025, 17:00",
-          },
-          {
-            title: "Fyrirtækjaheimsókn til Kolibri",
-            location: "Borgartún 26, Reykjavík",
-            date: "14. janúar 2026, 17:00",
-          },
-          {
-            title: "Fyrirtækjaheimsókn til Aranja",
-            location: "Nóatún 17, 105 Reykjavík",
-            date: "23. februar 2026, 14:00",
-          },
-          {
-            title: "Fyrirtækjaheimsókn til Overcast",
-            location: "Höfðabakka 9D, 110 Reykjavík",
-            date: "18. mars 2026, 17:00",
-          },
-        ];
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await fetch(
+          buildApiUrl("/api/events", {
+            limit: "6",
+            language: currentLanguage,
+          })
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch events");
+        }
+
+        const data = await response.json();
+        setUpcomingEvents(data.events || []);
+      } catch (err) {
+        console.error("Error fetching events:", err);
+        setError("Failed to load upcoming events");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, [currentLanguage]);
 
   const pastEvents =
     currentLanguage === "en"
@@ -201,41 +209,92 @@ export default function EventsPage() {
       <Container>
         <PageTitle>{getTranslatedUpcoming()}</PageTitle>
 
-        <EventGrid>
-          {upcomingEvents.map((event, index) => (
-            <EventCard key={index}>
-              <EventImage>
-                <Image
-                  src={`/resources/images/vidburdir${index + 1}.png`}
-                  alt={event.title}
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
-              </EventImage>
-              <EventContent>
-                <EventTitle>{event.title}</EventTitle>
-                <EventDetails>
-                  <LocationWrapper>
+        {loading ? (
+          <LoadingText>
+            {currentLanguage === "en"
+              ? "Loading upcoming events..."
+              : "Hleður viðburði á döfinni..."}
+          </LoadingText>
+        ) : error ? (
+          <ErrorText>{error}</ErrorText>
+        ) : upcomingEvents.length > 0 ? (
+          <EventGrid>
+            {upcomingEvents.map((event, index) => (
+              <EventCard
+                key={event.id || index}
+                $clickable={true}
+                onClick={() => {
+                  console.log("Event clicked:", event.title, "URL:", event.url);
+                  if (event.url) {
+                    window.open(event.url, "_blank");
+                  } else {
+                    // Fallback: search for the event on Google
+                    const searchQuery = encodeURIComponent(
+                      event.title + " Iceland"
+                    );
+                    window.open(
+                      `https://www.google.com/search?q=${searchQuery}`,
+                      "_blank"
+                    );
+                  }
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                <EventImage>
+                  {event.image ? (
                     <Image
-                      src="/resources/icons/location.svg"
-                      alt={getTranslatedLocation()}
-                      width={11}
-                      height={15}
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      style={{ objectFit: "cover" }}
                     />
-                    <span>{event.location}</span>
-                  </LocationWrapper>
-                  <span>{event.date}</span>
-                </EventDetails>
-              </EventContent>
-            </EventCard>
-          ))}
-        </EventGrid>
+                  ) : (
+                    <Image
+                      src={`/resources/images/vidburdir${(index % 6) + 1}.png`}
+                      alt={event.title}
+                      fill
+                      style={{ objectFit: "cover" }}
+                    />
+                  )}
+                </EventImage>
+                <EventContent>
+                  <EventTitle>{event.title}</EventTitle>
+                  <EventDetails>
+                    <LocationWrapper>
+                      <Image
+                        src="/resources/icons/location.svg"
+                        alt={getTranslatedLocation()}
+                        width={11}
+                        height={15}
+                      />
+                      <span>{event.location}</span>
+                    </LocationWrapper>
+                    <span>{event.date}</span>
+                  </EventDetails>
+                </EventContent>
+              </EventCard>
+            ))}
+          </EventGrid>
+        ) : (
+          <LoadingText>
+            {currentLanguage === "en"
+              ? "No upcoming events found"
+              : "Engir viðburðir á döfinni fundust"}
+          </LoadingText>
+        )}
 
         <PageTitle>{getTranslatedPast()}</PageTitle>
 
         <EventGrid>
           {pastEvents.map((event, index) => (
-            <EventCard key={index}>
+            <EventCard
+              key={index}
+              $clickable={false}
+              onClick={() => {
+                // Past events don't have URLs, so no action needed
+              }}
+              style={{ cursor: "default" }}
+            >
               <EventImage>
                 <Image
                   src={

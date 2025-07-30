@@ -6,6 +6,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  serverExternalPackages: [],
+  serverRuntimeConfig: {
+    // Increase timeout for API routes
+    maxDuration: 30,
+  },
 };
 
 module.exports = nextConfig;
