@@ -8,11 +8,101 @@
     "podcast": "Hlaðvarp",
     "contact": "Hafa samband"
   },
+  "about": {
+    "title": "Hvað er Vertonet ?",
+    "description": "Markmið okkar er að skapa vettvang fyrir konur og kvár í margvíslegum störfum innan atvinnugreinarinnar til þess að tengjast, fræðast og styðja hvert annað",
+    "readMore": "Lesa um Vertonet"
+  },
+  "cta": {
+    "title": "Vill þitt fyrirtæki halda viðburð í samstarfi við Vertonet?",
+    "description": "Við erum alltaf á höttunum eftir nýjum og spennandi tækifærum til að efla tengslanet okkar og skapa vettvang fyrir konur og kvár í upplýsingatækni.",
+    "contact": "Hafa samband"
+  },
   "chatbot": {
     "header": "Hvernig get ég aðstoðað?",
     "placeholder": "Skrifaðu skilaboð...",
     "send": "Senda",
     "error": "Því miður kom upp villa. Vinsamlegast reyndu aftur síðar.",
     "initialMessage": "Hæ! Ég er hér til að hjálpa þér með upplýsingar um konur og kynsegin einstaklinga í tækni, sérstaklega á Íslandi. Ég get líka hjálpað þér að finna þig um vefsíðuna og finna upplýsingar um viðburði og aðild. Hvernig get ég aðstoðað þig í dag?"
+  },
+  "register": {
+    "title": "Skráðu þig í samtökin",
+    "description": "Fáðu boð á næsta viðburð",
+    "name": "Nafn",
+    "namePlaceholder": "Skrifaðu nafnið þitt",
+    "email": "Netfang",
+    "emailPlaceholder": "Skrifaðu netfangið þitt",
+    "submit": "Skrá mig núna",
+    "submitting": "Skrái..."
+  },
+  "aboutPage": {
+    "label": "UM OKKUR",
+    "boardLabel": "STJÓRN",
+    "content": {
+      "p1": "Vertonet er samskeyti tveggja orða, verto, sem er latneska orðið fyrir umbreytingar, og net, sem stendur fyrir tengslanet. Vertonet eru samtök kvenna og kvára í upplýsingatækni á Íslandi. Markmið samtakanna er að skapa vettvang fyrir konur og kvár til að tengjast, fræðast, styðja hvert annað og síðast en ekki síst að auka fjölbreytileika í greininni.",
+      "p2": "Vertonet heldur margvíslega viðburði í samstarfi við helstu upplýsingatæknifyrirtæki á Íslandi og stendur fyrir verkefnum sem stuðla að því að auka fjölbreytileika í upplýsingatækni.",
+      "p3": "Meðlimir Vertonet eru um 1000 talsins og samanstanda af konum og kvár sem starfa í upplýsingatækni eða hafa áhuga á greininni. Með því að gerast meðlimur samtakanna færð þú aðgang að þeim viðburðum sem samtökin standa fyrir og upplýsingar um stöðu þeirra verkefna sem samtökin koma að. Viðburðirnir gefa meðlimum tækifæri á að stækka tengslanetið, kynnast helstu fyrirmyndum í geiranum og fá innblástur og fræðslu.",
+      "p4": "Vertonet hefur einnig staðið fyrir stærri verkefnum með áherslu á að auka fjölbreytileika í greininni í samstarfi við helstu upplýsingatæknifyrirtæki og menntastofnanir á Íslandi."
+    },
+    "boardMember": {
+      "title": "Vefstjóri og fjölmiðlafulltrúi",
+      "linkedinAlt": "LinkedIn"
+    },
+    "imageAlts": {
+      "event": "Vertonet viðburður",
+      "activity": "Vertonet starfsemi",
+      "workshop": "Vertonet vinnustofa",
+      "team": "Vertonet teymi"
+    }
+  },
+  "eventsPage": {
+    "upcomingEvents": "Viðburðir á döfinni",
+    "pastEvents": "Fyrri viðburðir",
+    "location": "Staðsetning",
+    "companyVisit": "Fyrirtækjaheimsókn til",
+    "upcomingList": [
+      {
+        "title": "Fyrirtækjaheimsókn til Gangverk",
+        "location": "Ármúli 6, 108 Reykjavík",
+        "date": "18. september 2025, 14:00"
+      },
+      {
+        "title": "Fyrirtækjaheimsókn til Advania",
+        "location": "Guðrúnartún 10, 105 Reykjavík",
+        "date": "24. október 2025, 17:00"
+      },
+      {
+        "title": "Fyrirtækjaheimsókn til Kolibri",
+        "location": "Borgartún 26, Reykjavík",
+        "date": "14. janúar 2026, 17:00"
+      },
+      {
+        "title": "Fyrirtækjaheimsókn til Aranja",
+        "location": "Nóatún 17, 105 Reykjavík",
+        "date": "23. februar 2025, 14:00"
+      },
+      {
+        "title": "Fyrirtækjaheimsókn til Overcast",
+        "location": "Höfðabakka 9D, 110 Reykjavík",
+        "date": "18. mars 2025, 17:00"
+      }
+    ],
+    "pastList": [
+      {
+        "title": "Fyrirtækjaheimsókn til Syndis",
+        "location": "Skeifan 19, 108 Reykjavík",
+        "date": "15. febrúar 2025, 17:00"
+      },
+      {
+        "title": "Fyrirtækjaheimsókn til Origo",
+        "location": "Borgartún 37, 105 Reykjavík",
+        "date": "12. janúar 2025, 14:00"
+      },
+      {
+        "title": "Fyrirtækjaheimsókn til TM Software",
+        "location": "Borgartún 37, 105 Reykjavík",
+        "date": "23. nóvember 2026, 17:00"
+      }
+    ]
   }
 }

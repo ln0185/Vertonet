@@ -12,6 +12,7 @@ interface ButtonProps {
   onClick?: () => void;
   showArrow?: boolean;
   disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
 const StyledButton = styled.button<{
@@ -29,7 +30,8 @@ const StyledButton = styled.button<{
   font-size: ${(props) => props.theme.fontSizes.xs};
   font-weight: 400;
   line-height: 1.3;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  opacity: ${(props) => (props.disabled ? 0.6 : 1)};
   transition: all 0.2s ease;
 
   ${(props) => {
@@ -151,13 +153,15 @@ export default function Button({
   children,
   onClick,
   showArrow = true,
+  disabled,
+  type = "button",
 }: ButtonProps) {
   const hasIcon = typeof children === "string" && showArrow;
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
   return (
-    <StyledButton $variant={variant} onClick={onClick}>
+    <StyledButton $variant={variant} onClick={onClick} disabled={disabled}>
       {children}
       {hasIcon && (
         <ButtonIcon>

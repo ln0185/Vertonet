@@ -116,12 +116,12 @@ export default function EventsPage() {
           {
             title: "Company Visit to Aranja",
             location: "Nóatún 17, 105 Reykjavík",
-            date: "February 23, 2025, 14:00",
+            date: "February 23, 2026, 14:00",
           },
           {
             title: "Company Visit to Overcast",
             location: "Höfðabakka 9D, 110 Reykjavík",
-            date: "March 18, 2025, 17:00",
+            date: "March 18, 2026, 17:00",
           },
         ]
       : [
@@ -143,12 +143,12 @@ export default function EventsPage() {
           {
             title: "Fyrirtækjaheimsókn til Aranja",
             location: "Nóatún 17, 105 Reykjavík",
-            date: "23. februar 2025, 14:00",
+            date: "23. februar 2026, 14:00",
           },
           {
             title: "Fyrirtækjaheimsókn til Overcast",
             location: "Höfðabakka 9D, 110 Reykjavík",
-            date: "18. mars 2025, 17:00",
+            date: "18. mars 2026, 17:00",
           },
         ];
 
@@ -168,7 +168,7 @@ export default function EventsPage() {
           {
             title: "Company Visit to TM Software",
             location: "Borgartún 37, 105 Reykjavík",
-            date: "November 23, 2026, 17:00",
+            date: "November 23, 2024, 17:00",
           },
         ]
       : [
@@ -185,7 +185,7 @@ export default function EventsPage() {
           {
             title: "Fyrirtækjaheimsókn til TM Software",
             location: "Borgartún 37, 105 Reykjavík",
-            date: "23. nóvember 2026, 17:00",
+            date: "23. nóvember 2024, 17:00",
           },
         ];
 

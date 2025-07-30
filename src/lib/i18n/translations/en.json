@@ -8,11 +8,101 @@
     "podcast": "Podcast",
     "contact": "Contact Us"
   },
+  "about": {
+    "title": "What is Vertonet?",
+    "description": "Our goal is to create a platform for women and non-binary individuals in various roles within the industry to connect, learn, and support each other",
+    "readMore": "Read about Vertonet"
+  },
+  "cta": {
+    "title": "Would your company like to host an event in collaboration with Vertonet?",
+    "description": "We are always looking for new and exciting opportunities to strengthen our network and create a platform for women and non-binary individuals in IT.",
+    "contact": "Contact Us"
+  },
   "chatbot": {
     "header": "How can I help you?",
     "placeholder": "Type your message...",
     "send": "Send",
     "error": "I'm sorry, I encountered an error. Please try again later.",
     "initialMessage": "Hello! I'm here to help you with information about women and non-binary individuals in tech, especially in Iceland. I can also help you navigate the website and find information about events and membership. How can I assist you today?"
+  },
+  "register": {
+    "title": "Join the organization",
+    "description": "Get invited to the next event",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "submit": "Register now",
+    "submitting": "Submitting..."
+  },
+  "aboutPage": {
+    "label": "ABOUT US",
+    "boardLabel": "BOARD",
+    "content": {
+      "p1": "Vertonet is a combination of two words: 'verto', which is the Latin word for transformation, and 'net', which stands for network. Vertonet is an organization for women and non-binary individuals in the tech industry in Iceland. The organization's goal is to create a platform for women and non-binary individuals to connect, learn, support each other, and last but not least, to increase diversity in the field.",
+      "p2": "Vertonet hosts various events in collaboration with leading tech companies in Iceland and runs projects that promote diversity in the tech industry.",
+      "p3": "Vertonet has about 1000 members consisting of women and non-binary individuals who work in the tech industry or are interested in the field. By becoming a member of the organization, you get access to the events organized by the organization and information about the status of the projects the organization is involved in. The events give members the opportunity to expand their network, meet leading role models in the sector, and gain inspiration and education.",
+      "p4": "Vertonet has also led larger projects focusing on increasing diversity in the field in collaboration with leading tech companies and educational institutions in Iceland."
+    },
+    "boardMember": {
+      "title": "Web Manager and Media Representative",
+      "linkedinAlt": "LinkedIn"
+    },
+    "imageAlts": {
+      "event": "Vertonet event",
+      "activity": "Vertonet activity",
+      "workshop": "Vertonet workshop",
+      "team": "Vertonet team"
+    }
+  },
+  "eventsPage": {
+    "upcomingEvents": "Upcoming Events",
+    "pastEvents": "Past Events",
+    "location": "Location",
+    "companyVisit": "Company Visit to",
+    "upcomingList": [
+      {
+        "title": "Company Visit to Gangverk",
+        "location": "Ármúli 6, 108 Reykjavík",
+        "date": "September 18, 2025, 14:00"
+      },
+      {
+        "title": "Company Visit to Advania",
+        "location": "Guðrúnartún 10, 105 Reykjavík",
+        "date": "October 24, 2025, 17:00"
+      },
+      {
+        "title": "Company Visit to Kolibri",
+        "location": "Borgartún 26, Reykjavík",
+        "date": "January 14, 2026, 17:00"
+      },
+      {
+        "title": "Company Visit to Aranja",
+        "location": "Nóatún 17, 105 Reykjavík",
+        "date": "February 23, 2025, 14:00"
+      },
+      {
+        "title": "Company Visit to Overcast",
+        "location": "Höfðabakka 9D, 110 Reykjavík",
+        "date": "March 18, 2025, 17:00"
+      }
+    ],
+    "pastList": [
+      {
+        "title": "Company Visit to Syndis",
+        "location": "Skeifan 19, 108 Reykjavík",
+        "date": "February 15, 2025, 17:00"
+      },
+      {
+        "title": "Company Visit to Origo",
+        "location": "Borgartún 37, 105 Reykjavík",
+        "date": "January 12, 2025, 14:00"
+      },
+      {
+        "title": "Company Visit to TM Software",
+        "location": "Borgartún 37, 105 Reykjavík",
+        "date": "November 23, 2026, 17:00"
+      }
+    ]
   }
 }

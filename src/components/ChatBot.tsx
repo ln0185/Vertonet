@@ -5,8 +5,9 @@ import styled from "styled-components";
 import Button from "./Button";
 import { useChatStore, Message } from "../lib/store/chatStore";
 import { useTranslation } from "react-i18next";
-import "../lib/i18n/config";
+import i18n from "../lib/i18n/config";
 import Image from "next/image";
+import { handleChatMessage } from "@/app/actions/chat";
 
 const ChatbotContainer = styled.div`
   position: fixed;
@@ -21,7 +22,7 @@ const ChatbotIcon = styled.div`
   position: relative;
 `;
 
-const ChatButton = styled(Button)`
+const ChatButton = styled.button`
   width: auto;
   min-width: 4rem;
   height: 3.5rem;
@@ -33,6 +34,22 @@ const ChatButton = styled(Button)`
   box-shadow: 0 0.25rem 1rem ${(props) => props.theme.colors.shadow.card};
   font-size: 3.5rem;
   font-weight: 300;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.white};
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    padding-right: 3.5rem;
+
+    .hi-text {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 `;
 
 const IconWrapper = styled.div<{ $isHover?: boolean }>`
@@ -45,6 +62,18 @@ const IconWrapper = styled.div<{ $isHover?: boolean }>`
   button:hover & {
     opacity: ${(props) => (props.$isHover ? 1 : 0)};
   }
+`;
+
+const HiText = styled.span`
+  position: absolute;
+  right: 1rem;
+  opacity: 0;
+  transform: translateX(-0.5rem);
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: ${(props) => props.theme.fonts.matter};
 `;
 
 const ChatWindow = styled.div<{ $isOpen: boolean }>`
@@ -93,6 +122,7 @@ const MessageBubble = styled.div<{ $isUser: boolean }>`
   font-family: ${(props) => props.theme.fonts.matter};
   font-size: ${(props) => props.theme.fontSizes.sm};
   line-height: ${(props) => props.theme.lineHeights.relaxed};
+  white-space: pre-wrap;
 `;
 
 const InputContainer = styled.div`
@@ -155,7 +185,7 @@ const LoadingDots = styled.div`
 `;
 
 export default function ChatBot() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     messages,
     isOpen,
@@ -164,8 +194,10 @@ export default function ChatBot() {
     setIsOpen,
     setIsLoading,
     cleanupMessages,
+    clearMessages,
   } = useChatStore();
   const [input, setInput] = useState("");
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -180,6 +212,21 @@ export default function ChatBot() {
     // Clean up any corrupted messages on component mount
     cleanupMessages();
   }, [cleanupMessages]);
+
+  // Detect language changes and update initial message
+  useEffect(() => {
+    if (i18n.language !== currentLanguage) {
+      setCurrentLanguage(i18n.language);
+      // Clear messages and add new initial message in the new language
+      clearMessages();
+      if (isOpen) {
+        addMessage({
+          role: "assistant",
+          content: t("chatbot.initialMessage"),
+        });
+      }
+    }
+  }, [i18n.language, currentLanguage, isOpen, addMessage, t, clearMessages]);
 
   useEffect(() => {
     // Add initial message when chat is opened for the first time
@@ -204,37 +251,11 @@ export default function ChatBot() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: [...messages, userMessage],
-        }),
-      });
-
-      if (!response.ok) {
-        // Get detailed error information
-        let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
-        try {
-          const errorData = await response.json();
-          if (errorData.error) {
-            errorMessage += ` - ${errorData.error}`;
-          }
-        } catch (e) {
-          // If we can't parse the error response, use the status text
-        }
-        console.error("API Error Details:", {
-          status: response.status,
-          statusText: response.statusText,
-          url: response.url,
-        });
-        throw new Error(errorMessage);
-      }
-
-      const data = await response.json();
-      addMessage(data.message);
+      const response = await handleChatMessage(
+        [...messages, userMessage],
+        i18n.language
+      );
+      addMessage(response.message);
     } catch (error) {
       console.error("Chat error:", error);
       addMessage({
@@ -248,32 +269,23 @@ export default function ChatBot() {
 
   return (
     <ChatbotContainer>
-      <ChatButton
-        variant="primary"
-        onClick={() => setIsOpen(!isOpen)}
-        showArrow={false}
-      >
+      <ChatButton onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? (
           "×"
         ) : (
-          <ChatbotIcon>
-            <IconWrapper $isHover={false}>
-              <Image
-                src="/resources/icons/chatbot.svg"
-                alt="Chat with us"
-                fill
-                style={{ objectFit: "contain" }}
-              />
-            </IconWrapper>
-            <IconWrapper $isHover={true}>
+          <>
+            <ChatbotIcon>
               <Image
                 src="/resources/icons/chatbot-white.svg"
                 alt="Chat with us"
                 fill
                 style={{ objectFit: "contain" }}
               />
-            </IconWrapper>
-          </ChatbotIcon>
+            </ChatbotIcon>
+            <HiText className="hi-text">
+              {i18n.language === "is" ? "Hæ !" : "Hi !"}
+            </HiText>
+          </>
         )}
       </ChatButton>
 
