@@ -18,6 +18,7 @@ export const theme = {
       dark: "#000c17",
       muted: "#666666",
     },
+    error: "#ef4444",
     background: {
       cta: "#f7f0f3",
       board: "#f3f1ea",
