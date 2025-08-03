@@ -20,34 +20,42 @@ const ChatbotIcon = styled.div`
   width: 1.5rem;
   height: 1.5rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const ChatButton = styled.button`
+const ChatButton = styled.button<{ $isOpen: boolean }>`
   width: auto;
-  min-width: 4rem;
-  height: 3.5rem;
-  border-radius: 2rem;
-  padding: 0 1rem;
+  min-width: ${(props) => (props.$isOpen ? "3rem" : "4rem")};
+  height: ${(props) => (props.$isOpen ? "3rem" : "3.5rem")};
+  border-radius: ${(props) => (props.$isOpen ? "1.5rem" : "2rem")};
+  padding: ${(props) => (props.$isOpen ? "0 0.75rem" : "0 1rem")};
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0.25rem 1rem ${(props) => props.theme.colors.shadow.card};
-  font-size: 3.5rem;
+  font-size: ${(props) => (props.$isOpen ? "1.5rem" : "3.5rem")};
   font-weight: 300;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease,
+    padding 0.3s ease, min-width 0.3s ease;
   background-color: ${(props) => props.theme.colors.primary};
   color: ${(props) => props.theme.colors.white};
   border: none;
   cursor: pointer;
 
   &:hover {
-    padding-right: 3.5rem;
+    padding-right: ${(props) => (props.$isOpen ? "0.75rem" : "3.5rem")};
+    background-color: ${(props) =>
+      props.$isOpen
+        ? props.theme.colors.primaryDark
+        : props.theme.colors.primary};
 
     .hi-text {
-      opacity: 1;
-      transform: translateX(0);
+      opacity: ${(props) => (props.$isOpen ? "0" : "1")};
+      transform: translateX(${(props) => (props.$isOpen ? "0" : "0")});
     }
   }
 `;
@@ -76,18 +84,33 @@ const HiText = styled.span`
   font-family: ${(props) => props.theme.fonts.matter};
 `;
 
+const CloseIcon = styled.span`
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: font-size 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+`;
+
 const ChatWindow = styled.div<{ $isOpen: boolean }>`
   position: absolute;
-  bottom: 3rem;
+  bottom: 4rem;
   right: 0;
-  width: 24rem;
+  width: 25rem;
   height: 30rem;
   background: ${(props) => props.theme.colors.white};
   border-radius: ${(props) => props.theme.borderRadius.sm};
   box-shadow: 0 0.25rem 1rem ${(props) => props.theme.colors.shadow.card};
-  display: ${(props) => (props.$isOpen ? "flex" : "none")};
+  display: flex;
   flex-direction: column;
   overflow: hidden;
+  opacity: ${(props) => (props.$isOpen ? 1 : 0)};
+  transform: ${(props) => (props.$isOpen ? "scale(1)" : "scale(0.8)")};
+  transform-origin: bottom right;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: ${(props) => (props.$isOpen ? "auto" : "none")};
 `;
 
 const ChatHeader = styled.div`
@@ -269,9 +292,9 @@ export default function ChatBot() {
 
   return (
     <ChatbotContainer>
-      <ChatButton onClick={() => setIsOpen(!isOpen)}>
+      <ChatButton $isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? (
-          "×"
+          <CloseIcon>×</CloseIcon>
         ) : (
           <>
             <ChatbotIcon>
