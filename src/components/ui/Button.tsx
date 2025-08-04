@@ -13,6 +13,8 @@ interface ButtonProps {
   showArrow?: boolean;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
+  as?: React.ElementType;
+  href?: string;
 }
 
 const StyledButton = styled.button<{
@@ -33,6 +35,7 @@ const StyledButton = styled.button<{
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   opacity: ${(props) => (props.disabled ? 0.6 : 1)};
   transition: all 0.2s ease;
+  text-decoration: none;
 
   ${(props) => {
     switch (props.$variant) {
@@ -45,6 +48,16 @@ const StyledButton = styled.button<{
           font-size: ${(props) => props.theme.fontSizes.sm};
           height: auto;
           position: relative;
+
+          @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
+            font-size: ${(props) => props.theme.fontSizes.xs};
+            padding: 0.5rem 0.75rem;
+          }
+
+          @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+            font-size: ${(props) => props.theme.fontSizes.xs};
+            padding: 0.5rem 0.75rem;
+          }
 
           &::after {
             content: "";
@@ -155,13 +168,22 @@ export default function Button({
   showArrow = true,
   disabled,
   type = "button",
+  as,
+  href,
 }: ButtonProps) {
   const hasIcon = typeof children === "string" && showArrow;
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
   return (
-    <StyledButton $variant={variant} onClick={onClick} disabled={disabled}>
+    <StyledButton
+      as={as}
+      href={href}
+      $variant={variant}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+    >
       {children}
       {hasIcon && (
         <ButtonIcon>

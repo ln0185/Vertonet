@@ -14,6 +14,10 @@ const Nav = styled.nav`
   z-index: 100;
   width: 100%;
   margin-top: 1.5rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: none;
+  }
 `;
 
 const Content = styled.div`
@@ -124,9 +128,11 @@ const ContactButton = styled.button`
   overflow: hidden;
   transition: all 0.3s ease;
   min-width: 8rem;
+  text-decoration: none;
 
   &:hover {
     padding-right: 2.5rem;
+    text-decoration: none;
 
     .arrow-icon {
       opacity: 1;
@@ -218,7 +224,7 @@ export default function Navbar() {
               </LanguageLink>
             </LanguageContainer>
           </Menu>
-          <ContactButton>
+          <ContactButton as={Link} href="/contact">
             {currentLanguage === "en" ? "Contact Us" : "Hafa samband"}
             <ArrowIcon
               src="/resources/icons/arrow-up-right-white.svg"

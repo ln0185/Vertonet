@@ -1,12 +1,12 @@
 "use client";
 
 import styled from "styled-components";
-import Button from "./Button";
+import Button from "../ui/Button";
 import { useTranslation } from "react-i18next";
 
 const Section = styled.section`
   width: 100%;
-  height: 57.125rem;
+  height: auto;
   margin: 0 auto;
   padding: ${({ theme }) => `${theme.space.sm} ${theme.space.md}`};
   position: relative;
@@ -14,6 +14,15 @@ const Section = styled.section`
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: ${({ theme }) => theme.space.xl};
+  background-color: ${({ theme }) => theme.colors.background.baby};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: ${({ theme }) => `${theme.space.sm} ${theme.space.sm}`};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => `${theme.space.xs} ${theme.space.xs}`};
+  }
 `;
 
 const BackgroundImage = styled.div`
@@ -23,6 +32,14 @@ const BackgroundImage = styled.div`
   background-position: center;
   background-size: cover;
   border-radius: ${({ theme }) => theme.borderRadius.sm};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: 40rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    height: 27rem;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -32,6 +49,21 @@ const CardContainer = styled.div`
   transform: translateY(-50%);
   padding: ${({ theme }) =>
     `${theme.space.xs} ${theme.space.xl} ${theme.space.xs} 0`};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    left: 2rem;
+    padding: ${({ theme }) =>
+      `${theme.space.xs} ${theme.space.md} ${theme.space.xs} 0`};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    left: 1rem;
+    right: 1rem;
+    top: auto;
+    bottom: 2rem;
+    transform: none;
+    padding: 0;
+  }
 `;
 
 const Card = styled.div`
@@ -40,6 +72,19 @@ const Card = styled.div`
   padding: 3rem;
   width: 34.3125rem;
   height: 44.5rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 28rem;
+    height: 36rem;
+    padding: 2rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    padding: ${({ theme }) => theme.space.md};
+  }
 `;
 
 const Content = styled.div`
@@ -47,17 +92,21 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
 
-const Label = styled.span`
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.gray[500]};
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    height: auto;
+    gap: ${({ theme }) => theme.space.md};
+  }
 `;
 
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.space.lg};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: ${({ theme }) => theme.space.md};
+  }
 `;
 
 const Heading = styled.h2`
@@ -66,12 +115,20 @@ const Heading = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes["3xl"]};
   line-height: ${({ theme }) => theme.lineHeights.normal};
   color: ${({ theme }) => theme.colors.gray[700]};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+  }
 `;
 
 const Description = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.lg};
   line-height: ${({ theme }) => theme.lineHeights.loose};
   color: ${({ theme }) => theme.colors.gray[500]};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+  }
 `;
 
 export default function ProjectsSection() {
@@ -92,12 +149,11 @@ export default function ProjectsSection() {
     currentLanguage === "en" ? "View Projects" : "Skoða verkefni";
 
   return (
-    <Section>
+    <Section id="projects">
       <BackgroundImage />
       <CardContainer>
         <Card>
           <Content>
-            <Label>{getTranslatedLabel()}</Label>
             <TextContainer>
               <Heading>{getTranslatedTitle()}</Heading>
               <Description>{getTranslatedDescription()}</Description>

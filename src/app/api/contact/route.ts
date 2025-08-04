@@ -21,12 +21,16 @@ async function connectToDatabase() {
 
 export async function POST(request: Request) {
   try {
-    const { firstName, lastName, email } = await request.json();
+    const { firstName, lastName, email, phone, company, subject, message } =
+      await request.json();
 
-    // Validate the input
-    if (!firstName || !lastName || !email) {
+    // Validate the required input
+    if (!firstName || !lastName || !email || !subject || !message) {
       return NextResponse.json(
-        { error: "First name, last name, and email are required" },
+        {
+          error:
+            "First name, last name, email, subject, and message are required",
+        },
         { status: 400 }
       );
     }
@@ -44,27 +48,22 @@ export async function POST(request: Request) {
       // Connect to MongoDB
       const client = await connectToDatabase();
       const db = client.db("Cluster0");
-      const collection = db.collection("registrations");
+      const collection = db.collection("contacts");
 
-      // Check if email already exists
-      const existingRegistration = await collection.findOne({ email });
-      if (existingRegistration) {
-        return NextResponse.json(
-          { error: "Email already registered" },
-          { status: 409 }
-        );
-      }
-
-      // Insert the registration data
+      // Insert the contact data
       await collection.insertOne({
         firstName,
         lastName,
         email,
+        phone: phone || null,
+        company: company || null,
+        subject,
+        message,
         createdAt: new Date(),
       });
 
       return NextResponse.json(
-        { message: "Registration successful" },
+        { message: "Contact message sent successfully" },
         { status: 201 }
       );
     } catch (dbError) {
@@ -75,9 +74,9 @@ export async function POST(request: Request) {
       );
     }
   } catch (error) {
-    console.error("Registration error:", error);
+    console.error("Contact form error:", error);
     return NextResponse.json(
-      { error: "Failed to process registration" },
+      { error: "Failed to process contact form" },
       { status: 500 }
     );
   }

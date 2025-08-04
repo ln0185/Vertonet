@@ -304,9 +304,47 @@ export class ChatService {
       message.includes("what can you do")
     ) {
       if (isIcelandicMessage) {
-        return "Ég get hjálpað þér með nokkra hluti:\n\n• **Viðburðir og verkefni** - Finna komandi viðburði fyrir konur og kynsegin einstaklinga í tækni\n• **Um stofnunina okkar** - Læra um verkefnið okkar og liðið\n• **Taka þátt í samfélaginu okkar** - Skráningarformið er neðst á þessari forsíðu\n• **Tækniiðnaður á Íslandi** - Tölfræði og upplýsingar um konur og kynsegin einstaklinga í tækni\n• **Vefsíðunavigation** - Hjálpa þér að finna sérstakar upplýsingar á síðunni okkar\n\nSpurðu mig bara um einhvern af þessum efnum og ég mun gefa þér sérstakar upplýsingar og leiðbeina þér á réttar síður!";
+        return "Ég get hjálpað þér með nokkra hluti:\n\n• **Viðburðir og verkefni** - Finna komandi viðburði fyrir konur og kynsegin einstaklinga í tækni\n• **Um stofnunina okkar** - Læra um verkefnið okkar og liðið\n• **Taka þátt í samfélaginu okkar** - Skráningarformið er neðst á þessari forsíðu\n• **Tækniiðnaður á Íslandi** - Tölfræði og upplýsingar um konur og kynsegin einstaklinga í tækni\n• **Vefsíðunavigation** - Hjálpa þér að finna sérstakar upplýsingar á síðunni okkar\n• **Félagsleg fjölmiðlar** - Finna okkur á samfélagsmiðlum\n\nSpurðu mig bara um einhvern af þessum efnum og ég mun gefa þér sérstakar upplýsingar og leiðbeina þér á réttar síður!";
       }
-      return "I can help you with several things:\n\n• **Events & Workshops** - Find upcoming events for women and non-binary individuals in tech\n• **About Our Organization** - Learn about our mission and team\n• **Join Our Community** - Registration form is at the bottom of this homepage\n• **Tech Industry in Iceland** - Statistics and information about women and non-binary individuals in tech\n• **Website Navigation** - Help you find specific information on our site\n\nJust ask me about any of these topics and I'll provide specific information and guide you to the right pages!";
+      return "I can help you with several things:\n\n• **Events & Workshops** - Find upcoming events for women and non-binary individuals in tech\n• **About Our Organization** - Learn about our mission and team\n• **Join Our Community** - Registration form is at the bottom of this homepage\n• **Tech Industry in Iceland** - Statistics and information about women and non-binary individuals in tech\n• **Website Navigation** - Help you find specific information on our site\n• **Social Media** - Find us on social media platforms\n\nJust ask me about any of these topics and I'll provide specific information and guide you to the right pages!";
+    }
+
+    // Social media queries
+    if (
+      message.includes("social media") ||
+      message.includes("félagsleg fjölmiðlar") ||
+      message.includes("facebook") ||
+      message.includes("instagram") ||
+      message.includes("linkedin") ||
+      message.includes("twitter") ||
+      message.includes("x") ||
+      message.includes("snapchat") ||
+      message.includes("tiktok") ||
+      message.includes("youtube") ||
+      message.includes("follow") ||
+      message.includes("fylgja") ||
+      message.includes("fylgdu") ||
+      message.includes("fylgir") ||
+      message.includes("félagsmiðlar") ||
+      message.includes("samfélagsmiðlar") ||
+      message.includes("samfélagsmiðla") ||
+      message.includes("félagsmiðla") ||
+      message.includes("where can i find you") ||
+      message.includes("hvar get ég fundið ykkur") ||
+      message.includes("hvar eru þið") ||
+      message.includes("where are you") ||
+      message.includes("contact") ||
+      message.includes("hafa samband") ||
+      message.includes("samband") ||
+      message.includes("get in touch") ||
+      message.includes("connect") ||
+      message.includes("tengja") ||
+      message.includes("tengjast")
+    ) {
+      if (isIcelandicMessage) {
+        return "Þú getur fundið okkur á félagslegum fjölmiðlum neðst á síðunni! Skrunaðu niður að neðst á síðuna og þú finnur tengla á:\n\n• **Facebook** - Vertonet.is\n• **Instagram** - @vertonet.is\n• **LinkedIn** - Vertonet\n\nÞar getur þú fylgst með nýjustu fréttum okkar, viðburðum og uppfærslum um samfélagið okkar fyrir konur og kynsegin einstaklinga í tækni á Íslandi!";
+      }
+      return "You can find us on social media at the bottom of the page! Scroll down to the bottom of the page and you'll find links to:\n\n• **Facebook** - Vertonet.is\n• **Instagram** - @vertonet.is\n• **LinkedIn** - Vertonet\n\nThere you can follow our latest news, events, and updates about our community for women and non-binary individuals in tech in Iceland!";
     }
 
     // Default response - simple acknowledgment without guidance

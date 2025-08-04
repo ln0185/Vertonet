@@ -22,6 +22,11 @@ const Section = styled.section`
   padding: 1.5rem 0;
   width: 100%;
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 0.5rem 0;
+    margin: 0;
+  }
 `;
 
 const CarouselContainer = styled.div`
@@ -38,9 +43,18 @@ const LogoWrapper = styled.div`
   flex-shrink: 0;
   margin-right: 1.3125rem;
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    height: 40px;
+    margin-right: 0.75rem;
+  }
+
   &:nth-child(5) {
     align-items: flex-end;
     padding-bottom: 0.5rem;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+      padding-bottom: 0.125rem;
+    }
   }
 
   &:last-child {

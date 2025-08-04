@@ -9,6 +9,12 @@ const Container = styled.div`
   max-width: calc(100% - 6rem);
   margin: 6rem auto;
   padding: 0;
+
+  @media (max-width: 768px) {
+    max-width: calc(100% - 2rem);
+    margin: 4rem auto;
+    margin-bottom: 1rem;
+  }
 `;
 
 const PhotoGrid = styled.div`
@@ -17,14 +23,31 @@ const PhotoGrid = styled.div`
   padding: 2.5rem 1rem;
   width: 100%;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 const MainPhoto = styled.div`
   width: 100%;
-  height: auto;
+  height: 35rem;
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
+  background-color: #f0f0f0;
+
+  @media (max-width: 768px) {
+    height: 23rem;
+  }
+`;
+
+const MainPhotoImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
 `;
 
 const PhotoGroup = styled.div`
@@ -32,6 +55,10 @@ const PhotoGroup = styled.div`
   flex-wrap: wrap;
   gap: 1.25rem;
   width: 100%;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const SmallPhoto = styled.div<{ height?: string }>`
@@ -45,7 +72,7 @@ const SmallPhoto = styled.div<{ height?: string }>`
 
 const WidePhoto = styled.div`
   width: 100%;
-  height: 20.1875rem;
+  height: 20rem;
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -56,6 +83,12 @@ const ContentSection = styled.section`
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
 `;
 
 const Label = styled.div`
@@ -73,6 +106,11 @@ const TextContent = styled.div`
   max-width: 45rem;
   width: 100%;
 
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
   p {
     margin-bottom: 1.5rem;
   }
@@ -84,6 +122,10 @@ const TextContent = styled.div`
 
 const BoardSection = styled.section`
   padding: 2.5rem 3rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+  }
 `;
 
 const BoardGrid = styled.div`
@@ -93,23 +135,46 @@ const BoardGrid = styled.div`
   gap: 2.5rem 1.25rem;
   width: 100%;
   justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
 `;
 
 const BoardPhoto = styled.div`
   width: 100%;
   height: 25rem;
-  background-color: ${({ theme }) => theme.colors.background.board};
+  background-color: #e0e0e0;
   border-radius: 1rem;
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    height: 20rem;
+  }
 `;
 
-const BoardCard = styled.div`
+const BoardPhotoImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+`;
+
+interface BoardCardProps {
+  index: number;
+}
+
+const BoardCard = styled.div<BoardCardProps>`
   width: 25.6875rem;
   display: flex;
   flex-direction: column;
   gap: 1.8125rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   &:hover {
     cursor: pointer;
@@ -138,6 +203,10 @@ const Name = styled.h3`
   font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.text.dark};
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Title = styled.p`
@@ -145,6 +214,10 @@ const Title = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.colors.text.muted};
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
 `;
 
 export default function AboutPage() {
@@ -154,11 +227,11 @@ export default function AboutPage() {
     <Container>
       <PhotoGrid>
         <MainPhoto>
-          <Image
+          <MainPhotoImage
             src="/resources/images/umokkur1.png"
             alt={t("aboutPage.imageAlts.event")}
-            fill
-            style={{ objectFit: "cover" }}
+            onLoad={() => console.log("Main photo loaded")}
+            onError={(e) => console.error("Main photo error:", e)}
           />
         </MainPhoto>
         <PhotoGroup>
@@ -202,14 +275,16 @@ export default function AboutPage() {
       <BoardSection>
         <Label>{t("aboutPage.boardLabel")}</Label>
         <BoardGrid>
-          {[1, 2, 3, 4, 5, 6].map((index) => (
-            <BoardCard key={index}>
+          {[0, 1, 2, 3, 4, 5].map((index) => (
+            <BoardCard key={index} index={index}>
               <BoardPhoto>
-                <Image
+                <BoardPhotoImage
                   src="/resources/images/karitas.png"
                   alt="Karítas Ólafsdóttir"
-                  fill
-                  style={{ objectFit: "cover" }}
+                  onLoad={() => console.log(`Board photo ${index} loaded`)}
+                  onError={(e) =>
+                    console.error(`Board photo ${index} error:`, e)
+                  }
                 />
               </BoardPhoto>
               <CardContent>

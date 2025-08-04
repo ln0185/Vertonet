@@ -35,6 +35,8 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   body {
@@ -46,6 +48,8 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    width: 100%;
+    touch-action: pan-y;
   }
 
   #__next {
@@ -170,5 +174,36 @@ export const GlobalStyle = createGlobalStyle`
     100% {
       transform: translateX(-50%);
     }
+  }
+
+  /* GSAP Split Text Styles */
+  .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  .word {
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .line {
+    display: block;
+    overflow: hidden;
+  }
+
+  /* Animation states */
+  .char.animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .word.animated {
+    overflow: visible;
+  }
+
+  .line.animated {
+    overflow: visible;
   }
 `;

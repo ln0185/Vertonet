@@ -28,8 +28,10 @@
   "register": {
     "title": "Skráðu þig í samtökin",
     "description": "Fáðu boð á næsta viðburð",
-    "name": "Nafn",
-    "namePlaceholder": "Skrifaðu nafnið þitt",
+    "firstName": "Fornafn",
+    "firstNamePlaceholder": "Skrifaðu fornafnið þitt",
+    "lastName": "Eftirnafn",
+    "lastNamePlaceholder": "Skrifaðu eftirnafnið þitt",
     "email": "Netfang",
     "emailPlaceholder": "Skrifaðu netfangið þitt",
     "submit": "Skrá mig núna",
@@ -54,6 +56,9 @@
       "workshop": "Vertonet vinnustofa",
       "team": "Vertonet teymi"
     }
+  },
+  "news": {
+    "moreNews": "Fleiri fréttir"
   },
   "eventsPage": {
     "upcomingEvents": "Viðburðir á döfinni",
@@ -104,5 +109,27 @@
         "date": "23. nóvember 2026, 17:00"
       }
     ]
+  },
+  "contact": {
+    "title": "Hafa samband",
+    "description": "Ertu með spurningar eða vilt samstarf? Við viljum gjarnan heyra frá þér. Sendu okkur skilaboð og við svörum eins fljótt og mögulegt er.",
+    "firstName": "Fornafn",
+    "firstNamePlaceholder": "Skrifaðu fornafnið þitt",
+    "lastName": "Eftirnafn",
+    "lastNamePlaceholder": "Skrifaðu eftirnafnið þitt",
+    "email": "Netfang",
+    "emailPlaceholder": "Skrifaðu netfangið þitt",
+    "phone": "Sími",
+    "phonePlaceholder": "Skrifaðu símanúmerið þitt (valfrjálst)",
+    "company": "Fyrirtæki",
+    "companyPlaceholder": "Skrifaðu nafn fyrirtækis (valfrjálst)",
+    "subject": "Viðfangsefni",
+    "subjectPlaceholder": "Um hvað er þetta?",
+    "message": "Skilaboð",
+    "messagePlaceholder": "Segðu okkur meira um fyrirspurnina þína...",
+    "submit": "Senda skilaboð",
+    "submitting": "Sendir...",
+    "success": "Takk fyrir! Skilaboðin þín hafa verið send með góðum árangri. Við svörum þér fljótlega.",
+    "error": "Því miður kom upp villa við að senda skilaboðin. Vinsamlegast reyndu aftur."
   }
 }

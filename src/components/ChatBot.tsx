@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import Button from "./Button";
+import Button from "./ui/Button";
 import { useChatStore, Message } from "../lib/store/chatStore";
 import { useTranslation } from "react-i18next";
 import i18n from "../lib/i18n/config";
@@ -14,6 +14,11 @@ const ChatbotContainer = styled.div`
   bottom: ${(props) => props.theme.space.lg};
   right: ${(props) => props.theme.space.lg};
   z-index: 1000;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    bottom: ${(props) => props.theme.space.md};
+    right: ${(props) => props.theme.space.md};
+  }
 `;
 
 const ChatbotIcon = styled.div`
@@ -46,12 +51,21 @@ const ChatButton = styled.button<{ $isOpen: boolean }>`
   border: none;
   cursor: pointer;
 
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    min-width: ${(props) => (props.$isOpen ? "2.5rem" : "3.5rem")};
+    height: ${(props) => (props.$isOpen ? "2.5rem" : "3rem")};
+    border-radius: ${(props) => (props.$isOpen ? "1.25rem" : "1.5rem")};
+    padding: ${(props) => (props.$isOpen ? "0 0.5rem" : "0 0.75rem")};
+    font-size: ${(props) => (props.$isOpen ? "1.25rem" : "3rem")};
+  }
+
   &:hover {
     padding-right: ${(props) => (props.$isOpen ? "0.75rem" : "3.5rem")};
-    background-color: ${(props) =>
-      props.$isOpen
-        ? props.theme.colors.primaryDark
-        : props.theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.primary};
+
+    @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+      padding-right: ${(props) => (props.$isOpen ? "0.5rem" : "3rem")};
+    }
 
     .hi-text {
       opacity: ${(props) => (props.$isOpen ? "0" : "1")};
@@ -82,6 +96,11 @@ const HiText = styled.span`
   font-size: 0.875rem;
   font-weight: 500;
   font-family: ${(props) => props.theme.fonts.matter};
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    right: 0.75rem;
+    font-size: 0.75rem;
+  }
 `;
 
 const CloseIcon = styled.span`
@@ -92,6 +111,10 @@ const CloseIcon = styled.span`
   align-items: center;
   justify-content: center;
   line-height: 1;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    font-size: 1.25rem;
+  }
 `;
 
 const ChatWindow = styled.div<{ $isOpen: boolean }>`
@@ -111,6 +134,23 @@ const ChatWindow = styled.div<{ $isOpen: boolean }>`
   transform-origin: bottom right;
   transition: opacity 0.2s ease, transform 0.2s ease;
   pointer-events: ${(props) => (props.$isOpen ? "auto" : "none")};
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    width: calc(100% - 2rem);
+    height: calc(100vh - 8rem);
+    bottom: 3.5rem;
+    right: -0.5rem;
+    border-radius: ${(props) => props.theme.borderRadius.sm}
+      ${(props) => props.theme.borderRadius.sm} 0 0;
+  }
+
+  @media (max-width: ${(props) =>
+      props.theme.breakpoints.tablet}) and (min-width: ${(props) =>
+      props.theme.breakpoints.mobile}) {
+    width: 20rem;
+    height: 25rem;
+    bottom: 3.5rem;
+  }
 `;
 
 const ChatHeader = styled.div`
@@ -120,6 +160,11 @@ const ChatHeader = styled.div`
   font-family: ${(props) => props.theme.fonts.matter};
   font-size: ${(props) => props.theme.fontSizes.md};
   font-weight: 350;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    padding: ${(props) => props.theme.space.sm};
+    font-size: ${(props) => props.theme.fontSizes.sm};
+  }
 `;
 
 const ChatMessages = styled.div`
@@ -129,6 +174,10 @@ const ChatMessages = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${(props) => props.theme.space.sm};
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    padding: ${(props) => props.theme.space.sm};
+  }
 `;
 
 const MessageBubble = styled.div<{ $isUser: boolean }>`
@@ -146,6 +195,12 @@ const MessageBubble = styled.div<{ $isUser: boolean }>`
   font-size: ${(props) => props.theme.fontSizes.sm};
   line-height: ${(props) => props.theme.lineHeights.relaxed};
   white-space: pre-wrap;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    max-width: 85%;
+    padding: ${(props) => props.theme.space.xs};
+    font-size: ${(props) => props.theme.fontSizes.xs};
+  }
 `;
 
 const InputContainer = styled.div`
@@ -154,6 +209,11 @@ const InputContainer = styled.div`
   display: flex;
   gap: ${(props) => props.theme.space.sm};
   align-items: center;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    padding: ${(props) => props.theme.space.sm};
+    gap: ${(props) => props.theme.space.xs};
+  }
 `;
 
 const Input = styled.input`
@@ -165,6 +225,11 @@ const Input = styled.input`
   font-size: ${(props) => props.theme.fontSizes.sm};
   outline: none;
 
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    padding: ${(props) => props.theme.space.xs};
+    font-size: ${(props) => props.theme.fontSizes.xs};
+  }
+
   &:focus {
     border-color: ${(props) => props.theme.colors.primary};
   }
@@ -174,6 +239,12 @@ const SendButton = styled(Button)`
   padding: ${(props) => props.theme.space.sm};
   height: 2.75rem;
   transform: translateY(0.25rem);
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    padding: ${(props) => props.theme.space.xs};
+    height: 2.5rem;
+    font-size: ${(props) => props.theme.fontSizes.xs};
+  }
 `;
 
 const LoadingDots = styled.div`
