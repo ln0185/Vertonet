@@ -90,7 +90,7 @@ const HamburgerButton = styled.button<{ $isOpen: boolean }>`
   }
 `;
 
-const MobileMenu = styled.div<{ isOpen: boolean }>`
+const MobileMenu = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -108,7 +108,8 @@ const MobileMenu = styled.div<{ isOpen: boolean }>`
   align-items: center;
   justify-content: flex-start;
   gap: ${({ theme }) => theme.space.xl};
-  transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
+  transform: ${({ $isOpen }) =>
+    $isOpen ? "translateX(0)" : "translateX(100%)"};
   transition: transform 0.3s ease-in-out;
 `;
 
@@ -264,7 +265,7 @@ export default function MobileNavbar() {
         </MobileContent>
       </MobileNav>
 
-      <MobileMenu isOpen={isMobileMenuOpen}>
+      <MobileMenu $isOpen={isMobileMenuOpen}>
         <MobileNavLink href="/" onClick={closeMobileMenu}>
           {currentLanguage === "en" ? "Home" : "Heim"}
         </MobileNavLink>

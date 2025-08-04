@@ -21,6 +21,7 @@ const FooterContent = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     justify-content: center;
+    padding: 0 ${({ theme }) => theme.space.md};
   }
 `;
 
