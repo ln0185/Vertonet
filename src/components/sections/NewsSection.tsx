@@ -1,6 +1,6 @@
 "use client";
 import styled from "styled-components";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
@@ -302,7 +302,20 @@ export default function NewsSection() {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Check if we're on mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // theme.breakpoints.mobile
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const getTranslatedLabel = (label: string) => {
     const translations: { [key: string]: { en: string; is: string } } = {
@@ -413,7 +426,23 @@ export default function NewsSection() {
     setCurrentIndex((prev) => Math.min(NEWS_CARDS.length - 1, prev + 1));
   };
 
-  const translateX = -currentIndex * (25.8125 + 2); // card width + gap
+  // Calculate card width and gap based on screen size
+  const getCardWidth = () => {
+    if (isMobile) {
+      return 18; // 18rem for mobile
+    } else if (window.innerWidth <= 1024) {
+      // tablet
+      return 20; // 20rem for tablet
+    } else {
+      return 25.8125; // 25.8125rem for desktop
+    }
+  };
+
+  const getCardGap = () => {
+    return 2; // 2rem gap (theme.space.lg)
+  };
+
+  const translateX = -currentIndex * (getCardWidth() + getCardGap());
 
   return (
     <Section id="news">
