@@ -18,7 +18,7 @@ const LOGO_DIMENSIONS = [
 
 const Section = styled.section`
   background-color: ${({ theme }) => theme.colors.background.baby};
-  margin: 1rem 0;
+  margin: 0;
   padding: 1.5rem 0;
   width: 100%;
   overflow: hidden;
