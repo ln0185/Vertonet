@@ -303,6 +303,8 @@ export default function NewsSection() {
   const currentLanguage = i18n.language;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   // Check if we're on mobile
@@ -426,6 +428,31 @@ export default function NewsSection() {
     setCurrentIndex((prev) => Math.min(NEWS_CARDS.length - 1, prev + 1));
   };
 
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && currentIndex < NEWS_CARDS.length - 1) {
+      handleNext();
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      handlePrevious();
+    }
+  };
+
   // Calculate card width and gap based on screen size
   const getCardWidth = () => {
     if (isMobile) {
@@ -472,6 +499,9 @@ export default function NewsSection() {
             style={
               { "--translate-x": `${translateX}rem` } as React.CSSProperties
             }
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {NEWS_CARDS.map((card, index) => (
               <Card key={index}>
