@@ -35,6 +35,7 @@ const Section = styled.section`
 
 const Content = styled.div`
   display: flex;
+  margin: 7rem auto;
   flex-direction: column;
   align-items: center;
   gap: 4rem;
