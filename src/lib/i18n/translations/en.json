@@ -26,10 +26,12 @@
     "initialMessage": "Hello! I'm here to help you with information about women and non-binary individuals in tech, especially in Iceland. I can also help you navigate the website and find information about events and membership. How can I assist you today?"
   },
   "register": {
-    "title": "Join the organization",
+    "title": "Become a member",
     "description": "Get invited to the next event",
-    "name": "Name",
-    "namePlaceholder": "Enter your name",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Enter your last name",
     "email": "Email",
     "emailPlaceholder": "Enter your email",
     "submit": "Register now",
@@ -54,6 +56,9 @@
       "workshop": "Vertonet workshop",
       "team": "Vertonet team"
     }
+  },
+  "news": {
+    "moreNews": "More News"
   },
   "eventsPage": {
     "upcomingEvents": "Upcoming Events",
@@ -104,5 +109,27 @@
         "date": "November 23, 2026, 17:00"
       }
     ]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Have a question or want to collaborate? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Enter your last name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "phone": "Phone",
+    "phonePlaceholder": "Enter your phone number (optional)",
+    "company": "Company",
+    "companyPlaceholder": "Enter your company name (optional)",
+    "subject": "Subject",
+    "subjectPlaceholder": "What is this about?",
+    "message": "Message",
+    "messagePlaceholder": "Tell us more about your inquiry...",
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "success": "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+    "error": "Sorry, there was an error sending your message. Please try again."
   }
 }

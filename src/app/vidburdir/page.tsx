@@ -2,16 +2,21 @@
 
 import styled from "styled-components";
 import Image from "next/image";
-import CTASection from "@/components/CTASection";
+import { CTASection } from "@/components/sections";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { buildApiUrl } from "@/lib/utils/api";
 
 const Container = styled.div`
   width: 100%;
-  max-width: calc(100% - 6rem);
+  max-width: 100%;
   margin: 9rem auto;
-  padding: 0;
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    margin: 5rem auto;
+    margin-bottom: 1rem;
+  }
 `;
 
 const PageTitle = styled.h1`
@@ -29,6 +34,17 @@ const EventGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
   margin-bottom: 5rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const EventImage = styled.div`
@@ -38,6 +54,15 @@ const EventImage = styled.div`
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 0.25rem 0.25rem ${({ theme }) => theme.colors.shadow.image};
+
+  @media (max-width: 1024px) {
+    height: 15.875rem;
+  }
+
+  @media (max-width: 768px) {
+    height: 15rem;
+    max-width: 100%;
+  }
 `;
 
 const EventCard = styled.div<{ $clickable?: boolean }>`
@@ -60,6 +85,15 @@ const EventCard = styled.div<{ $clickable?: boolean }>`
       }
     }
   `}
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0 auto;
+  }
 `;
 
 const EventContent = styled.div`
@@ -165,34 +199,34 @@ export default function EventsPage() {
       ? [
           {
             title: "Company Visit to Syndis",
-            location: "Skeifan 19, 108 Reykjavík",
+            location: "Reykjavík",
             date: "February 15, 2025, 17:00",
           },
           {
             title: "Company Visit to Origo",
-            location: "Borgartún 37, 105 Reykjavík",
+            location: "Reykjavík",
             date: "January 12, 2025, 14:00",
           },
           {
             title: "Company Visit to TM Software",
-            location: "Borgartún 37, 105 Reykjavík",
+            location: "Reykjavík",
             date: "November 23, 2024, 17:00",
           },
         ]
       : [
           {
             title: "Fyrirtækjaheimsókn til Syndis",
-            location: "Skeifan 19, 108 Reykjavík",
+            location: "Reykjavík",
             date: "15. febrúar 2025, 17:00",
           },
           {
             title: "Fyrirtækjaheimsókn til Origo",
-            location: "Borgartún 37, 105 Reykjavík",
+            location: "Reykjavík",
             date: "12. janúar 2025, 14:00",
           },
           {
             title: "Fyrirtækjaheimsókn til TM Software",
-            location: "Borgartún 37, 105 Reykjavík",
+            location: "Reykjavík",
             date: "23. nóvember 2024, 17:00",
           },
         ];

@@ -29,6 +29,11 @@ export const theme = {
       image: "rgba(0, 0, 0, 0.25)",
     },
   },
+  breakpoints: {
+    mobile: "768px",
+    tablet: "1024px",
+    desktop: "1200px",
+  },
   space: {
     xs: "0.75rem", // 12px
     sm: "1rem", // 16px

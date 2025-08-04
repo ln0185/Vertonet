@@ -9,16 +9,37 @@ const PORT = process.env.PORT || 3001;
 // CORS configuration
 app.use(
   cors({
-    origin: [
-      // Production domain
-      "https://vertonet.vercel.app",
-      // Preview deployments (Vercel creates unique URLs for each PR)
-      "https://vertonet-psk8bhsfl-helenes-projects-f9fa7660.vercel.app/",
-      // Development
-      "http://localhost:3000",
-      // Allow any Vercel preview deployment
-      "https://vertonet-psk8bhsfl-helenes-projects-f9fa7660.vercel.app/",
-    ],
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      const allowedOrigins = [
+        // Production domain
+        "https://vertonet.vercel.app",
+        // Development
+        "http://localhost:3000",
+        // Allow any Vercel preview deployment (pattern matching)
+        /^https:\/\/vertonet.*\.vercel\.app$/,
+        /^https:\/\/.*--vertonet.*\.vercel\.app$/,
+      ];
+
+      // Check if origin matches any allowed pattern
+      const isAllowed = allowedOrigins.some((allowedOrigin) => {
+        if (typeof allowedOrigin === "string") {
+          return origin === allowedOrigin;
+        } else if (allowedOrigin instanceof RegExp) {
+          return allowedOrigin.test(origin);
+        }
+        return false;
+      });
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        console.log("CORS blocked origin:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );

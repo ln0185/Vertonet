@@ -1,20 +1,29 @@
-import AboutSection from "@/components/AboutSection";
-import EventsSection from "@/components/EventsSection";
-import CompaniesCarousel from "@/components/CompaniesCarousel";
-import ProjectsSection from "@/components/ProjectsSection";
-import NewsSection from "@/components/NewsSection";
-import CTASection from "@/components/CTASection";
-import RegisterForm from "@/components/RegisterForm";
+import {
+  AboutSection,
+  EventsSection,
+  CompaniesCarousel,
+  ProjectsSection,
+  NewsSection,
+  CTASection,
+} from "@/components/sections";
+import { RegisterForm } from "@/components/ui";
+import { AnimatedSection } from "@/components/animation";
 
 export default function HomePage() {
   return (
     <div className="home-page">
       <main>
         <AboutSection />
-        <EventsSection />
-        <CompaniesCarousel />
+        <AnimatedSection animationType="slideUp" delay={0.2}>
+          <EventsSection />
+        </AnimatedSection>
+        <AnimatedSection animationType="fadeIn" delay={0.3}>
+          <CompaniesCarousel />
+        </AnimatedSection>
         <ProjectsSection />
-        <NewsSection />
+        <AnimatedSection animationType="fadeIn" delay={0.3}>
+          <NewsSection />
+        </AnimatedSection>
         <CTASection />
         <RegisterForm />
       </main>
