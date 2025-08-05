@@ -27,9 +27,8 @@ const Section = styled.section`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 0.5rem 0.75rem;
-    height: auto;
-    min-height: 2.5rem;
+    padding: 0.5rem 0;
+    height: 6rem;
   }
 `;
 
