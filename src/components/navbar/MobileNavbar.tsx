@@ -4,6 +4,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { Theme } from "../../styles/theme";
 
 const MobileNav = styled.nav`
   position: fixed;
@@ -21,8 +22,8 @@ const MobileNav = styled.nav`
 
 const MobileContent = styled.div`
   display: flex;
-  padding: ${({ theme }) => theme.space.md};
-  gap: ${({ theme }) => theme.space.xs};
+  padding: ${({ theme }: { theme: Theme }) => theme.space.md};
+  gap: ${({ theme }: { theme: Theme }) => theme.space.xs};
   align-self: stretch;
   width: 100%;
   height: 2rem;
@@ -30,6 +31,7 @@ const MobileContent = styled.div`
   justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(1.25rem);
+  z-index: 1000;
 `;
 
 const LogoContainer = styled.div`
@@ -54,6 +56,9 @@ const LogoLink = styled(Link)`
 `;
 
 const HamburgerButton = styled.button<{ $isOpen: boolean }>`
+  position: fixed;
+  top: 2rem;
+  right: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -63,7 +68,7 @@ const HamburgerButton = styled.button<{ $isOpen: boolean }>`
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 101;
+  z-index: 9999;
 
   div {
     width: 2rem;
@@ -94,8 +99,7 @@ const MobileMenu = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   width: 100%;
   height: 100vh;
-  margin-top: 4rem;
-  padding-top: 5rem;
+  padding-top: 4rem;
   top: 0;
   left: 0;
   right: 0;
@@ -254,16 +258,14 @@ export default function MobileNavbar() {
               />
             </LogoLink>
           </LogoContainer>
-          <HamburgerButton
-            $isOpen={isMobileMenuOpen}
-            onClick={toggleMobileMenu}
-          >
-            <div />
-            <div />
-            <div />
-          </HamburgerButton>
         </MobileContent>
       </MobileNav>
+
+      <HamburgerButton $isOpen={isMobileMenuOpen} onClick={toggleMobileMenu}>
+        <div />
+        <div />
+        <div />
+      </HamburgerButton>
 
       <MobileMenu $isOpen={isMobileMenuOpen}>
         <MobileNavLink href="/" onClick={closeMobileMenu}>

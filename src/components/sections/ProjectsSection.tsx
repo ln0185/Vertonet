@@ -38,7 +38,7 @@ const BackgroundImage = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    height: 27rem;
+    height: 40rem;
   }
 `;
 
@@ -82,8 +82,8 @@ const Card = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 100%;
     height: auto;
-    min-height: auto;
-    padding: ${({ theme }) => theme.space.md};
+    min-height: 32rem;
+    padding: ${({ theme }) => theme.space.lg};
   }
 `;
 
@@ -105,7 +105,7 @@ const TextContainer = styled.div`
   gap: ${({ theme }) => theme.space.lg};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    gap: ${({ theme }) => theme.space.md};
+    gap: ${({ theme }) => theme.space.lg};
   }
 `;
 
@@ -117,7 +117,7 @@ const Heading = styled.h2`
   color: ${({ theme }) => theme.colors.gray[700]};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes["2xl"]};
   }
 `;
 
@@ -128,6 +128,7 @@ const Description = styled.p`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: ${({ theme }) => theme.fontSizes.sm};
+    margin-bottom: ${({ theme }) => theme.space.sm};
   }
 `;
 
