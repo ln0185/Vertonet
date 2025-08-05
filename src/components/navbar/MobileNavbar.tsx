@@ -70,6 +70,10 @@ const HamburgerButton = styled.button<{ $isOpen: boolean }>`
   padding: 0;
   z-index: 9999;
 
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: none;
+  }
+
   div {
     width: 2rem;
     height: 0.2rem;
@@ -99,7 +103,7 @@ const MobileMenu = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   width: 100%;
   height: 100vh;
-  padding-top: 4rem;
+  padding-top: 5.5rem;
   top: 0;
   left: 0;
   right: 0;
@@ -165,7 +169,7 @@ const MobileLanguageSeparator = styled.span`
 const MobileContactButton = styled(Link)`
   display: flex;
   height: 3rem;
-  padding: ${({ theme }) => `${theme.space.sm} ${theme.space.md}`};
+  padding: ${({ theme }) => `${theme.space.sm} ${theme.space.sm}`};
   justify-content: center;
   align-items: center;
   border-radius: ${({ theme }) => theme.borderRadius.lg};
@@ -191,7 +195,6 @@ const SocialMediaContainer = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.space.md};
   align-items: center;
-  margin-top: ${({ theme }) => theme.space.lg};
 `;
 
 const SocialMediaLink = styled(Link)`
